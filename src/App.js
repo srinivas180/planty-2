@@ -1,5 +1,12 @@
+import { Routes, Route } from "react-router";
+import Mockman from "mockman-js";
+
 function App() {
-    return <h1>App</h1>;
+    return (
+        <Routes>
+            <Route path="/mockman" element={<Mockman />} />
+        </Routes>
+    );
 }
 
 export default App;
