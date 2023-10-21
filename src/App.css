@@ -1,0 +1,17 @@
+:root {
+    --primary: #00875a;
+    --secondary: #c9ffed;
+    --medium-green: #80f8d0;
+    --gray: #bbbbbb;
+    --blue-gray: #1e2f4f;
+}
+
+html {
+    box-sizing: border-box;
+}
+
+*,
+*:before,
+*:after {
+    box-sizing: inherit;
+}

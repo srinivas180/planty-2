@@ -1,0 +1,49 @@
+.container {
+    height: 60px;
+}
+
+.wrapper {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.left,
+.right {
+    flex: 1;
+}
+
+.left {
+    display: flex;
+    align-items: center;
+}
+
+.right {
+    display: flex;
+    justify-content: flex-end;
+    gap: 36px;
+}
+
+.title {
+    margin: 0;
+}
+
+.nav__list {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+}
+
+.nav__item {
+    padding: 8px 20px;
+}
+
+.options {
+    list-style-type: none;
+    padding: 0;
+    display: flex;
+}
+
+.options__item {
+    padding: 8px 20px;
+}
