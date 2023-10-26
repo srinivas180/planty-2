@@ -1,9 +1,5 @@
 .container {
-    height: 60px;
-}
-
-.wrapper {
-    padding: 20px;
+    padding: 8px 20px;
     display: flex;
     justify-content: space-between;
 }
