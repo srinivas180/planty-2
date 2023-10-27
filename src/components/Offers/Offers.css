@@ -1,0 +1,12 @@
+.offers {
+    display: flex;
+    margin: 70px 0;
+}
+
+.offers__discount {
+    width: 50%;
+}
+
+.offers__deal {
+    width: 50%;
+}
