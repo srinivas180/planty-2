@@ -1,0 +1,42 @@
+.categories-container {
+    width: 1100px;
+    margin: 50px auto;
+}
+
+.categories-heading {
+    text-align: center;
+    margin-bottom: 28px;
+    font-weight: 500;
+}
+
+.categories-heading::before,
+.categories-heading::after {
+    display: inline-block;
+    width: 100px;
+    height: 3px;
+    content: "";
+    background-color: gainsboro;
+    vertical-align: middle;
+    margin: 0px 16px;
+}
+
+.categories {
+    display: flex;
+    gap: 32px;
+}
+
+.category {
+    position: relative;
+}
+
+.category__image {
+    width: 350px;
+    height: 200px;
+    border-radius: 12px;
+}
+
+.category__text {
+    text-align: center;
+    font-weight: 500;
+    font-size: 18px;
+}
