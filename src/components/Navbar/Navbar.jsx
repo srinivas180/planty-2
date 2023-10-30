@@ -14,7 +14,9 @@ export function Navbar() {
                         <li className="nav__item">
                             <NavLink to="/products">Products</NavLink>
                         </li>
-                        <li className="nav__item">Wishlist</li>
+                        <li className="nav__item">
+                            <NavLink to="/wishlist">Wishlist</NavLink>
+                        </li>
                         <li className="nav__item">Cart</li>
                     </ul>
                 </nav>

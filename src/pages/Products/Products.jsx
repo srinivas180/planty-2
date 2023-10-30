@@ -13,7 +13,11 @@ export function Products() {
                 <h2>Products (showing 10 of 50 plants)</h2>
                 <div className="products__list">
                     {products.map((product) => (
-                        <Product key={product._id} product={product} />
+                        <Product
+                            key={product._id}
+                            product={product}
+                            isWishlistItem={false}
+                        />
                     ))}
                 </div>
             </div>

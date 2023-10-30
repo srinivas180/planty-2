@@ -34,7 +34,14 @@
     font-size: 9px;
 }
 
+/* if whishlist item then set product title margin to 0 */
+/* else set margin left and right to 8px */
+/* because of specificity only one product title styling applies */
 .product__title {
+    margin: 0;
+}
+
+.product__details .product__title {
     margin: 0 8px;
 }
 
