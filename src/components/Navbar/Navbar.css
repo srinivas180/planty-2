@@ -1,6 +1,4 @@
-.container {
-    padding: 8px 20px;
-    display: flex;
+.row--nav {
     justify-content: space-between;
 }
 

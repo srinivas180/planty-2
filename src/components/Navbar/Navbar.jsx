@@ -3,7 +3,7 @@ import "./Navbar.css";
 
 export function Navbar() {
     return (
-        <div className="container">
+        <div className="row row--nav container">
             <div className="left">
                 <h1 className="title">Planty</h1>
             </div>
