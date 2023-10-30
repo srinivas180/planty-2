@@ -7,7 +7,6 @@
 
 .product__image {
     border-radius: 22px;
-    flex-grow: 1;
     width: 100%;
 }
 
