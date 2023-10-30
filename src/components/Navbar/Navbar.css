@@ -38,6 +38,11 @@
     display: flex;
 }
 
+.nav__list,
+.options {
+    margin: 10px 0px;
+}
+
 .options__item {
     padding: 8px 20px;
 }
