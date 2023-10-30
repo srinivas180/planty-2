@@ -13,19 +13,20 @@ export function Product({ product }) {
                 />
             </Link>
             <div className="product__details">
-                <div className="product__header">
-                    <div className="product__rating">
-                        <span>{product.rating}</span>
-                        <span className="fa fa-star"></span>
-                    </div>
-                    <h3 className="product__title">{product.title}</h3>
+                <div className="product__rating">
+                    <span>{product.rating}</span>
+                    <span className="fa fa-star"></span>
                 </div>
-
+                <h3 className="product__title">{product.title}</h3>
                 <span className="product__price">₹{product.price}</span>
             </div>
             <div className="product__buttons">
-                <button className="product__button">"Add to wishlist"</button>
-                <button className="product__button">"Add to cart"</button>
+                <button className=" button button--secondary product__button">
+                    Add to wishlist
+                </button>
+                <button className=" button button--primary product__button">
+                    Add to cart
+                </button>
             </div>
         </div>
     );
