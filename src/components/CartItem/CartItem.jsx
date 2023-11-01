@@ -1,3 +1,5 @@
+import "./CartItem.css";
+
 export function CartItem({ item }) {
     return (
         <div className="cart-item">
