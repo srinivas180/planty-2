@@ -25,6 +25,10 @@ html {
     display: flex;
 }
 
+.row--center {
+    justify-content: center;
+}
+
 .button {
     border: none;
     border-radius: 10px;
