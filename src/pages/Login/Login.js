@@ -1,7 +1,5 @@
 import { NavLink } from "react-router-dom";
 
-import "./Login.css";
-
 export function Login() {
     return (
         <div className="container column column--center">
