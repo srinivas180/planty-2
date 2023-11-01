@@ -39,11 +39,6 @@ html {
     cursor: pointer;
 }
 
-.button:hover {
-    background-color: var(--primary);
-    color: white;
-}
-
 .button--primary {
     border: 1px solid var(--secondary);
     background-color: var(--secondary);
@@ -54,6 +49,12 @@ html {
     border: 1px solid var(--primary);
     background-color: white;
     color: var(--primary);
+}
+
+.button--primary:hover,
+.button--secondary:hover {
+    background-color: var(--primary);
+    color: white;
 }
 
 .button--text {
