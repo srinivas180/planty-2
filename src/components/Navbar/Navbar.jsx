@@ -29,7 +29,9 @@ export function Navbar() {
                     <li className="options__item">
                         <NavLink to="/login">Login</NavLink>
                     </li>
-                    <li className="options__item">Sign Up</li>
+                    <li className="options__item">
+                        <NavLink to="/signup">Sign Up</NavLink>
+                    </li>
                 </ul>
             </div>
         </div>
