@@ -29,29 +29,35 @@ export function Cart() {
                     </div>
 
                     <div className="price-details">
-                        <h2 className="price__heading">Price Details</h2>
+                        <h2 className="price-details__heading">
+                            Price Details
+                        </h2>
 
-                        <div className="price__split">
-                            <div className="price__item">
-                                <p className="price__attribute">
+                        <div className="price-details__split">
+                            <div className="price-details__item">
+                                <p className="price-details__attribute">
                                     Price ({cart.length} items)
                                 </p>
                                 {/* TODO: Replace 100 with itemsPrice */}
-                                <p className="price__value">₹{100}.00</p>
+                                <p className="price-details__value">
+                                    ₹{100}.00
+                                </p>
                             </div>
-                            <div className="price__item">
-                                <p className="price__attribute">Discount</p>
-                                <p className="price__value">-₹100.00</p>
+                            <div className="price-details__item">
+                                <p className="price-details__attribute">
+                                    Discount
+                                </p>
+                                <p className="price-details__value">-₹100.00</p>
                             </div>
-                            <div className="price__item">
-                                <p className="price__attribute">
+                            <div className="price-details__item">
+                                <p className="price-details__attribute">
                                     Delivery Charges
                                 </p>
-                                <p className="price__value">₹100.00</p>
+                                <p className="price-details__value">₹100.00</p>
                             </div>
                         </div>
 
-                        <div className="total-price price__item">
+                        <div className="total-price price-details__item">
                             <p className="total-price__attribute">
                                 Total Amount
                             </p>
@@ -59,11 +65,11 @@ export function Cart() {
                             <p className="total-price__value">₹{100}.00</p>
                         </div>
 
-                        <p className="price__savings">
+                        <p className="price-details__savings">
                             You will save ₹100.00 on this order
                         </p>
 
-                        <button className="button button--primary price__checkout">
+                        <button className="button button--primary price-details__checkout">
                             Checkout
                         </button>
                     </div>
