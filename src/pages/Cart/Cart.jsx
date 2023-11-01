@@ -23,7 +23,7 @@ export function Cart() {
                         <h2>Cart ({cart.length} items)</h2>
                         <div className="cart__items">
                             {cart.map((item) => (
-                                <CartItem key={item.id} item={item} />
+                                <CartItem key={item._id} item={item} />
                             ))}
                         </div>
                     </div>
