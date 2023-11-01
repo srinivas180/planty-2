@@ -1,4 +1,5 @@
 import { NavLink } from "react-router-dom";
+
 import "./Navbar.css";
 
 export function Navbar() {
@@ -17,7 +18,9 @@ export function Navbar() {
                         <li className="nav__item">
                             <NavLink to="/wishlist">Wishlist</NavLink>
                         </li>
-                        <li className="nav__item">Cart</li>
+                        <li className="nav__item">
+                            <NavLink to="/cart">Cart</NavLink>
+                        </li>
                     </ul>
                 </nav>
 
