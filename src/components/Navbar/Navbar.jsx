@@ -26,7 +26,9 @@ export function Navbar() {
 
                 <ul className="options">
                     <li className="options__item">Search</li>
-                    <li className="options__item">Login</li>
+                    <li className="options__item">
+                        <NavLink to="/login">Login</NavLink>
+                    </li>
                     <li className="options__item">Sign Up</li>
                 </ul>
             </div>
