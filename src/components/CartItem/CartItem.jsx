@@ -10,11 +10,11 @@ export function CartItem({ item }) {
                 <h2 className="cart-item__heading">{item.title}</h2>
                 <p className="cart-item__price">₹{item.price}</p>
                 <div className="cart-item__category">
-                    <span className="category__title">Category: </span>{" "}
+                    <span className="cart-item__property">Category: </span>
                     {item.categoryName}
                 </div>
                 <div className="quantity">
-                    <span className="quantity__title">Quantity: </span>
+                    <span className="cart-item__property">Quantity: </span>
                     <button
                         className="quantity__button button  button--secondary"
                         disabled={item.qty === 1}
