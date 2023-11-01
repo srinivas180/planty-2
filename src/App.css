@@ -29,6 +29,10 @@ html {
     justify-content: center;
 }
 
+.row--gap-8 {
+    gap: 8px;
+}
+
 .button {
     border: none;
     border-radius: 10px;
@@ -48,6 +52,11 @@ html {
 
 .button--secondary {
     border: 1px solid var(--primary);
+    background-color: white;
+    color: var(--primary);
+}
+
+.button--text {
     background-color: white;
     color: var(--primary);
 }
