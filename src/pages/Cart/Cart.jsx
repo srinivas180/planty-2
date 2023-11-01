@@ -4,6 +4,8 @@ import { CartItem } from "../../components/CartItem/CartItem";
 
 import { products } from "../../backend/db/products";
 
+import "./Cart.css";
+
 export function Cart() {
     // TODO: get cart from context
     const cart = products;
