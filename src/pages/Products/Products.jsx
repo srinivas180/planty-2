@@ -1,11 +1,20 @@
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
 import { ProductsFilter } from "../../components/ProductsFilter/ProductsFilter";
 import { Product } from "../../components/Product/Product";
-
-import { products } from "../../backend/db/products";
+import { fetchProducts } from "../../slices/productsSlice";
 
 import "./Products.css";
 
 export function Products() {
+    const dispatch = useDispatch();
+    const products = useSelector((state) => state.products.products);
+
+    useEffect(() => {
+        dispatch(fetchProducts());
+    }, [dispatch]);
+
     return (
         <div className="row row--products container">
             <ProductsFilter />
