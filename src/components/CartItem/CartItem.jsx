@@ -1,6 +1,17 @@
+import { useDispatch, useSelector } from "react-redux";
+
+import { removeFromCart } from "../../slices/cartSlice";
+
 import "./CartItem.css";
 
 export function CartItem({ item }) {
+    const dispatch = useDispatch();
+    const encodedToken = useSelector((state) => state.auth.encodedToken);
+
+    function handleRemoveFromCart(productId) {
+        dispatch(removeFromCart({ encodedToken, productId }));
+    }
+
     return (
         <div className="cart-item">
             <img
@@ -29,7 +40,10 @@ export function CartItem({ item }) {
                     </button>
                 </div>
                 <div className="cart-item__buttons">
-                    <button className="cart-item__button button  button--secondary">
+                    <button
+                        className="cart-item__button button  button--secondary"
+                        onClick={() => handleRemoveFromCart(item._id)}
+                    >
                         Remove Item
                     </button>
                     <button className="cart-item__button button  button--secondary">
