@@ -1,14 +1,12 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
 import { CartItem } from "../../components/CartItem/CartItem";
 
-import { products } from "../../backend/db/products";
-
 import "./Cart.css";
 
 export function Cart() {
-    // TODO: get cart from context
-    const cart = products;
+    const cart = useSelector((state) => state.cart.cart);
 
     return (
         <>
