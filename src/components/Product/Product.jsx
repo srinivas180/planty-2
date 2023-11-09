@@ -12,8 +12,7 @@ export function Product({ product, isWishlistItem }) {
     const cartHasProduct = cart.find((p) => p._id === product._id);
 
     function handleAddToCart(product) {
-        const data = { encodedToken, product };
-        dispatch(addToCart(data));
+        dispatch(addToCart({ encodedToken, product }));
     }
 
     function handleRemoveFromCart(productId) {
