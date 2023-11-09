@@ -64,6 +64,19 @@ html {
     color: var(--primary);
 }
 
+.button--secondary:disabled {
+    border: 1px solid var(--medium-green);
+    color: var(--primary);
+    cursor: pointer;
+}
+
+.button--secondary:disabled:hover {
+    border: 1px solid var(--medium-green);
+    background-color: white;
+    color: var(--primary);
+    cursor: default;
+}
+
 .button--primary:hover,
 .button--secondary:hover {
     background-color: var(--primary);

@@ -49,6 +49,32 @@ export const removeFromCart = createAsyncThunk(
     }
 );
 
+export const productQuantityHandler = createAsyncThunk(
+    "cart/productQuantityHandler",
+    async ({ productId, type, encodedToken }) => {
+        try {
+            const response = await fetch(`api/user/cart/${productId}`, {
+                method: "POST",
+                headers: {
+                    authorization: encodedToken,
+                },
+                body: JSON.stringify({
+                    action: {
+                        type,
+                    },
+                }),
+            });
+
+            if (response.status === 200) {
+                const json = await response.json();
+                return json.cart;
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+);
+
 export const cartSlice = createSlice({
     name: "cart",
     initialState,
@@ -65,6 +91,14 @@ export const cartSlice = createSlice({
             state.status = "loading";
         },
         [removeFromCart.fulfilled]: (state, action) => {
+            state.status = "success";
+            state.cart = action.payload;
+        },
+
+        [productQuantityHandler.pending]: (state) => {
+            state.status = "loading";
+        },
+        [productQuantityHandler.fulfilled]: (state, action) => {
             state.status = "success";
             state.cart = action.payload;
         },

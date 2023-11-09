@@ -1,6 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 
-import { removeFromCart } from "../../slices/cartSlice";
+import { removeFromCart, productQuantityHandler } from "../../slices/cartSlice";
 
 import "./CartItem.css";
 
@@ -10,6 +10,10 @@ export function CartItem({ item }) {
 
     function handleRemoveFromCart(productId) {
         dispatch(removeFromCart({ encodedToken, productId }));
+    }
+
+    function handleQuantity(productId, type) {
+        dispatch(productQuantityHandler({ productId, type, encodedToken }));
     }
 
     return (
@@ -31,11 +35,15 @@ export function CartItem({ item }) {
                     <button
                         className="quantity__button button  button--secondary"
                         disabled={item.qty === 1}
+                        onClick={() => handleQuantity(item._id, "decrement")}
                     >
                         -
                     </button>
                     <span className="quantity__number">{item.qty}</span>
-                    <button className="quantity__button button  button--secondary">
+                    <button
+                        className="quantity__button button  button--secondary"
+                        onClick={() => handleQuantity(item._id, "increment")}
+                    >
                         +
                     </button>
                 </div>
