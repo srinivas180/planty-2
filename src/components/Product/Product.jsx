@@ -1,5 +1,5 @@
 import { useDispatch, useSelector } from "react-redux";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 
 import { addToCart, removeFromCart } from "../../slices/cartSlice";
 
@@ -7,16 +7,13 @@ import "./Product.css";
 
 export function Product({ product, isWishlistItem }) {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const encodedToken = useSelector((state) => state.auth.encodedToken);
     const cart = useSelector((state) => state.cart.cart);
     const cartHasProduct = cart.find((p) => p._id === product._id);
 
     function handleAddToCart(product) {
         dispatch(addToCart({ encodedToken, product }));
-    }
-
-    function handleRemoveFromCart(productId) {
-        dispatch(removeFromCart({ encodedToken, productId }));
     }
 
     return (
@@ -48,11 +45,11 @@ export function Product({ product, isWishlistItem }) {
                     className=" button button--primary product__button"
                     onClick={
                         cartHasProduct
-                            ? () => handleRemoveFromCart(product._id)
+                            ? () => navigate("/cart")
                             : () => handleAddToCart(product)
                     }
                 >
-                    {cartHasProduct ? "Remove from Cart" : "Add to cart"}
+                    {cartHasProduct ? "Go to cart" : "Add to cart"}
                 </button>
             </div>
         </div>
