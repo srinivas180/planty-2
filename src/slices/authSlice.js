@@ -19,9 +19,6 @@ export const login = createAsyncThunk("auth/login", async (userCredentials) => {
             localStorage.setItem("encodedToken", encodedToken);
             localStorage.setItem("user", JSON.stringify(foundUser));
 
-            // setEncodedToken(encodedToken);
-            // setUser(foundUser);
-
             return { encodedToken, foundUser };
         }
     } catch (error) {
