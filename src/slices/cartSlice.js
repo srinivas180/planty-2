@@ -28,6 +28,27 @@ export const addToCart = createAsyncThunk(
     }
 );
 
+export const removeFromCart = createAsyncThunk(
+    "cart/removeFromCart",
+    async ({ productId, encodedToken }) => {
+        try {
+            const response = await fetch(`/api/user/cart/${productId}`, {
+                method: "DELETE",
+                headers: {
+                    authorization: encodedToken,
+                },
+            });
+
+            if (response.status === 200) {
+                const json = await response.json();
+                return json.cart;
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+);
+
 export const cartSlice = createSlice({
     name: "cart",
     initialState,
@@ -37,6 +58,13 @@ export const cartSlice = createSlice({
             state.status = "loading";
         },
         [addToCart.fulfilled]: (state, action) => {
+            state.status = "success";
+            state.cart = action.payload;
+        },
+        [removeFromCart.pending]: (state) => {
+            state.status = "loading";
+        },
+        [removeFromCart.fulfilled]: (state, action) => {
             state.status = "success";
             state.cart = action.payload;
         },

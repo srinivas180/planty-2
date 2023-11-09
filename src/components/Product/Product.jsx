@@ -1,17 +1,23 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link } from "react-router-dom";
 
-import { addToCart } from "../../slices/cartSlice";
+import { addToCart, removeFromCart } from "../../slices/cartSlice";
 
 import "./Product.css";
 
 export function Product({ product, isWishlistItem }) {
     const dispatch = useDispatch();
     const encodedToken = useSelector((state) => state.auth.encodedToken);
+    const cart = useSelector((state) => state.cart.cart);
+    const cartHasProduct = cart.find((p) => p._id === product._id);
 
     function handleAddToCart(product) {
         const data = { encodedToken, product };
         dispatch(addToCart(data));
+    }
+
+    function handleRemoveFromCart(productId) {
+        dispatch(removeFromCart({ encodedToken, productId }));
     }
 
     return (
@@ -41,9 +47,13 @@ export function Product({ product, isWishlistItem }) {
                 </button>
                 <button
                     className=" button button--primary product__button"
-                    onClick={() => handleAddToCart(product)}
+                    onClick={
+                        cartHasProduct
+                            ? () => handleRemoveFromCart(product._id)
+                            : () => handleAddToCart(product)
+                    }
                 >
-                    Add to cart
+                    {cartHasProduct ? "Remove from Cart" : "Add to cart"}
                 </button>
             </div>
         </div>
