@@ -1,6 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import { removeFromCart, productQuantityHandler } from "../../slices/cartSlice";
+import { addToWishlist, removeFromWishlist } from "../../slices/wishlistSlice";
 
 import "./CartItem.css";
 
@@ -8,12 +9,28 @@ export function CartItem({ item }) {
     const dispatch = useDispatch();
     const encodedToken = useSelector((state) => state.auth.encodedToken);
 
+    const wishlist = useSelector((state) => state.wishlist.wishlist);
+    const wishlistHasProduct = wishlist.find((w) => w._id === item._id);
+
     function handleRemoveFromCart(productId) {
         dispatch(removeFromCart({ encodedToken, productId }));
     }
 
     function handleQuantity(productId, type) {
         dispatch(productQuantityHandler({ productId, type, encodedToken }));
+    }
+
+    function handleAddToWishlist(encodedToken, item) {
+        dispatch(addToWishlist({ encodedToken, product: item }));
+    }
+
+    function handleRemoveFromWishlist(encodedToken, item) {
+        dispatch(
+            removeFromWishlist({
+                encodedToken,
+                productId: item._id,
+            })
+        );
     }
 
     return (
@@ -54,8 +71,15 @@ export function CartItem({ item }) {
                     >
                         Remove Item
                     </button>
-                    <button className="cart-item__button button  button--secondary">
-                        Add to wishlist
+                    <button
+                        className="cart-item__button button  button--secondary"
+                        onClick={() =>
+                            wishlistHasProduct
+                                ? handleRemoveFromWishlist(encodedToken, item)
+                                : handleAddToWishlist(encodedToken, item)
+                        }
+                    >
+                        {wishlistHasProduct ? "Unwishlist" : "Add to wishlist"}
                     </button>
                 </div>
             </div>
