@@ -1,7 +1,7 @@
 import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
-import { addToCart, removeFromCart } from "../../slices/cartSlice";
+import { addToCart } from "../../slices/cartSlice";
 
 import "./Product.css";
 
