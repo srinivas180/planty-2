@@ -1,9 +1,30 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
+import { login } from "../../slices/authSlice";
 
 export function Login() {
+    const dispatch = useDispatch();
+    const [userCreds, setUserCreds] = useState({ email: "", password: "" });
+
+    function handleInputChange(e) {
+        setUserCreds((userCreds) => ({
+            ...userCreds,
+            [e.target.name]: e.target.value,
+        }));
+    }
+
+    function handleLogin(e, userCreds) {
+        e.preventDefault();
+        dispatch(login(userCreds));
+    }
+
     return (
         <div className="container column column--center">
-            <form className="form column">
+            <form
+                className="form column"
+                onSubmit={(e) => handleLogin(e, userCreds)}
+            >
                 <h2 className="form__heading">Login</h2>
 
                 <input
@@ -11,6 +32,9 @@ export function Login() {
                     type="email"
                     placeholder="Email"
                     required
+                    name="email"
+                    value={userCreds.email}
+                    onChange={handleInputChange}
                 />
 
                 <div className="password-container">
@@ -20,6 +44,8 @@ export function Login() {
                         type="password"
                         placeholder="Password"
                         required
+                        value={userCreds.password}
+                        onChange={handleInputChange}
                     />
                     {/* TODO: change false to showPassword */}
                     {false ? (
@@ -99,7 +125,15 @@ export function Login() {
                 >
                     Login
                 </button>
-                <button className="button button--text form__guest-login-button">
+                <button
+                    onClick={(e) =>
+                        handleLogin(e, {
+                            email: "satyachandra@proton.me",
+                            password: "satyachandra",
+                        })
+                    }
+                    className="button button--text form__guest-login-button"
+                >
                     Login as Guest
                 </button>
             </form>
