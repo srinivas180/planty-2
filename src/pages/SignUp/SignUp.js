@@ -1,24 +1,57 @@
+import { useState } from "react";
+import { useDispatch } from "react-redux";
 import { NavLink } from "react-router-dom";
 
+import { signup } from "../../slices/authSlice";
+
 export function SignUp() {
+    const dispatch = useDispatch();
+    const [userDetails, setUserDetails] = useState({
+        firstName: "",
+        lastName: "",
+        email: "",
+        password: "",
+    });
+
+    function handleInputChange(e) {
+        setUserDetails((userDetails) => ({
+            ...userDetails,
+            [e.target.name]: e.target.value,
+        }));
+    }
+
+    function handleSignUp(e) {
+        e.preventDefault();
+        dispatch(signup(userDetails));
+    }
+
     return (
         <div className="container column column--center">
-            <form className="form column">
+            <form className="form column" onSubmit={handleSignUp}>
                 <h2 className="form__heading">Sign Up</h2>
                 <input
                     className="form__input"
                     type="text"
                     placeholder="First Name"
+                    name="firstName"
+                    value={userDetails.firstName}
+                    onChange={handleInputChange}
                 />
                 <input
                     className="form__input"
                     type="text"
                     placeholder="Last Name"
+                    name="lastName"
+                    value={userDetails.lastName}
+                    onChange={handleInputChange}
                 />
                 <input
                     className="form__input"
                     type="email"
                     placeholder="Email"
+                    name="email"
+                    value={userDetails.email}
+                    onChange={handleInputChange}
                 />
                 <div className="password-container">
                     <input
@@ -28,6 +61,8 @@ export function SignUp() {
                         // TODO: change to dynamic type based on showPassword state
                         type="password"
                         placeholder="Password"
+                        value={userDetails.password}
+                        onChange={handleInputChange}
                     />
 
                     {/* TODO: Change false to showPassword state */}
@@ -166,9 +201,6 @@ export function SignUp() {
                 <button
                     className="button button--primary form__submit"
                     type="submit"
-                    onClick={(event) => {
-                        event.preventDefault();
-                    }}
                 >
                     Create New Account
                 </button>

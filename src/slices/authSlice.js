@@ -19,7 +19,27 @@ export const login = createAsyncThunk("auth/login", async (userCredentials) => {
             localStorage.setItem("encodedToken", encodedToken);
             localStorage.setItem("user", JSON.stringify(foundUser));
 
-            return { encodedToken, foundUser };
+            return { encodedToken, foundUser, isLoggedIn: true };
+        }
+    } catch (error) {
+        console.error(error);
+    }
+});
+
+export const signup = createAsyncThunk("auth/signup", async (userDetails) => {
+    try {
+        const response = await fetch("/api/auth/signup", {
+            method: "POST",
+            body: JSON.stringify(userDetails),
+        });
+
+        if (response.status === 201) {
+            const { encodedToken, createdUser } = await response.json();
+
+            localStorage.setItem("encodedToken", encodedToken);
+            localStorage.setItem("user", JSON.stringify(createdUser));
+
+            return { encodedToken, createdUser, isLoggedIn: true };
         }
     } catch (error) {
         console.error(error);
@@ -38,6 +58,16 @@ export const authSlice = createSlice({
             state.status = "success";
             state.user = action.payload.foundUser;
             state.encodedToken = action.payload.encodedToken;
+            state.isLoggedIn = action.payload.isLoggedIn;
+        },
+        [signup.pending]: (state) => {
+            state.status = "loading";
+        },
+        [signup.fulfilled]: (state, action) => {
+            state.status = "success";
+            state.user = action.payload.createdUser;
+            state.encodedToken = action.payload.encodedToken;
+            state.isLoggedIn = action.payload.isLoggedIn;
         },
     },
 });
