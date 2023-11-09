@@ -7,6 +7,9 @@ import "./Cart.css";
 
 export function Cart() {
     const cart = useSelector((state) => state.cart.cart);
+    const itemsPrice = cart.reduce((totalPrice, currentItem) => {
+        return totalPrice + Number(currentItem.price) * currentItem.qty;
+    }, 0);
 
     return (
         <>
@@ -38,9 +41,8 @@ export function Cart() {
                                 <p className="price-details__attribute">
                                     Price ({cart.length} items)
                                 </p>
-                                {/* TODO: Replace 100 with itemsPrice */}
                                 <p className="price-details__value">
-                                    ₹{100}.00
+                                    ₹{itemsPrice}.00
                                 </p>
                             </div>
                             <div className="price-details__item">
@@ -61,8 +63,9 @@ export function Cart() {
                             <p className="total-price__attribute">
                                 Total Amount
                             </p>
-                            {/* TODO: Replace 100 with itemsPrice */}
-                            <p className="total-price__value">₹{100}.00</p>
+                            <p className="total-price__value">
+                                ₹{itemsPrice}.00
+                            </p>
                         </div>
 
                         <p className="price-details__savings">
