@@ -2,6 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 import { addToCart } from "../../slices/cartSlice";
+import { addToWishlist } from "../../slices/wishlistSlice";
 
 import "./Product.css";
 
@@ -14,6 +15,10 @@ export function Product({ product, isWishlistItem }) {
 
     function handleAddToCart(product) {
         dispatch(addToCart({ encodedToken, product }));
+    }
+
+    function handleAddToWishlist(product) {
+        dispatch(addToWishlist({ encodedToken, product }));
     }
 
     return (
@@ -38,7 +43,10 @@ export function Product({ product, isWishlistItem }) {
                 <h3 className="product__title">{product.title}</h3>
             )}
             <div className="product__buttons">
-                <button className=" button button--secondary product__button">
+                <button
+                    className=" button button--secondary product__button"
+                    onClick={() => handleAddToWishlist(product)}
+                >
                     Add to wishlist
                 </button>
                 <button

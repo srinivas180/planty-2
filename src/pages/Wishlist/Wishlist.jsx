@@ -1,14 +1,12 @@
+import { useSelector } from "react-redux";
 import { Link } from "react-router-dom";
-
-import { products } from "../../backend/db/products";
 
 import { Product } from "../../components/Product/Product";
 
 import "./Wishlist.css";
 
 export function Wishlist() {
-    // TODO: get wishlist items from context
-    const wishlist = products;
+    const wishlist = useSelector((state) => state.wishlist.wishlist);
 
     return (
         <>
