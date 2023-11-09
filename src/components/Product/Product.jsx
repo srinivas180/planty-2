@@ -2,7 +2,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { Link, useNavigate } from "react-router-dom";
 
 import { addToCart } from "../../slices/cartSlice";
-import { addToWishlist } from "../../slices/wishlistSlice";
+import { addToWishlist, removeFromWishlist } from "../../slices/wishlistSlice";
 
 import "./Product.css";
 
@@ -10,8 +10,12 @@ export function Product({ product, isWishlistItem }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const encodedToken = useSelector((state) => state.auth.encodedToken);
+
     const cart = useSelector((state) => state.cart.cart);
     const cartHasProduct = cart.find((p) => p._id === product._id);
+
+    const wishlist = useSelector((state) => state.wishlist.wishlist);
+    const wishlistHasProduct = wishlist.find((w) => w._id === product._id);
 
     function handleAddToCart(product) {
         dispatch(addToCart({ encodedToken, product }));
@@ -19,6 +23,10 @@ export function Product({ product, isWishlistItem }) {
 
     function handleAddToWishlist(product) {
         dispatch(addToWishlist({ encodedToken, product }));
+    }
+
+    function handleRemoveFromWishlist(product) {
+        dispatch(removeFromWishlist({ encodedToken, productId: product._id }));
     }
 
     return (
@@ -45,9 +53,13 @@ export function Product({ product, isWishlistItem }) {
             <div className="product__buttons">
                 <button
                     className=" button button--secondary product__button"
-                    onClick={() => handleAddToWishlist(product)}
+                    onClick={
+                        wishlistHasProduct
+                            ? () => handleRemoveFromWishlist(product)
+                            : () => handleAddToWishlist(product)
+                    }
                 >
-                    Add to wishlist
+                    {wishlistHasProduct ? "Unwishlist" : "Add to wishlist"}
                 </button>
                 <button
                     className=" button button--primary product__button"

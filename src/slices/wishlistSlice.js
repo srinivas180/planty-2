@@ -28,6 +28,27 @@ export const addToWishlist = createAsyncThunk(
     }
 );
 
+export const removeFromWishlist = createAsyncThunk(
+    "wishlist/removeFromWishlist",
+    async ({ encodedToken, productId }) => {
+        try {
+            const response = await fetch(`/api/user/wishlist/${productId}`, {
+                method: "DELETE",
+                headers: {
+                    authorization: encodedToken,
+                },
+            });
+
+            if (response.status === 200) {
+                const json = await response.json();
+                return json.wishlist;
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+);
+
 export const wishlistSlice = createSlice({
     name: "wishlist",
     initialState,
@@ -37,6 +58,13 @@ export const wishlistSlice = createSlice({
             state.status = "loading";
         },
         [addToWishlist.fulfilled]: (state, action) => {
+            state.status = "success";
+            state.wishlist = action.payload;
+        },
+        [removeFromWishlist.pending]: (state) => {
+            state.status = "loading";
+        },
+        [removeFromWishlist.fulfilled]: (state, action) => {
             state.status = "success";
             state.wishlist = action.payload;
         },
