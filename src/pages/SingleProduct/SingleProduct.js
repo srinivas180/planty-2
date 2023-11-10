@@ -1,13 +1,25 @@
-import { useSelector } from "react-redux";
+import { useSelector, useDispatch } from "react-redux";
 import { useParams } from "react-router";
+import { useNavigate } from "react-router-dom";
 
+import { addToCart } from "../../slices/cartSlice";
 import "./SingleProduct.css";
 
 export function SingleProduct() {
+    const dispatch = useDispatch();
+    const navigate = useNavigate();
+    const encodedToken = useSelector((state) => state.auth.encodedToken);
+
     const { productId } = useParams();
     const products = useSelector((state) => state.products.products);
-
     const product = products.find((product) => product._id === productId);
+
+    const cart = useSelector((state) => state.cart.cart);
+    const cartHasProduct = cart.find((p) => p._id === product._id);
+
+    function handleAddToCart(product) {
+        dispatch(addToCart({ encodedToken, product }));
+    }
 
     return (
         <div className="row row--gap-32 row--align-start container single-product">
@@ -19,8 +31,15 @@ export function SingleProduct() {
                 />
 
                 <div className="single-product__buttons">
-                    <button className="single-product__button button button--secondary">
-                        Add to cart
+                    <button
+                        className="single-product__button button button--primary"
+                        onClick={
+                            cartHasProduct
+                                ? () => navigate("/cart")
+                                : () => handleAddToCart(product)
+                        }
+                    >
+                        {cartHasProduct ? "Go to cart" : "Add to cart"}
                     </button>
                     <button className="single-product__button button button--secondary">
                         Add to wishlist
