@@ -21,8 +21,16 @@ html {
     padding: 12px 24px;
 }
 
+.m-0 {
+    margin: 0;
+}
+
 .row {
     display: flex;
+}
+
+.row--align-start {
+    align-items: flex-start;
 }
 
 .row--center {
@@ -37,6 +45,10 @@ html {
     gap: 8px;
 }
 
+.row--gap-32 {
+    gap: 32px;
+}
+
 .column {
     display: flex;
     flex-direction: column;
@@ -44,6 +56,10 @@ html {
 
 .column--center {
     align-items: center;
+}
+
+.column--gap-20 {
+    gap: 20px;
 }
 
 .button {
