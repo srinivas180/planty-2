@@ -3,6 +3,7 @@ import { useParams } from "react-router";
 import { useNavigate } from "react-router-dom";
 
 import { addToCart } from "../../slices/cartSlice";
+import { addToWishlist, removeFromWishlist } from "../../slices/wishlistSlice";
 import "./SingleProduct.css";
 
 export function SingleProduct() {
@@ -17,8 +18,19 @@ export function SingleProduct() {
     const cart = useSelector((state) => state.cart.cart);
     const cartHasProduct = cart.find((p) => p._id === product._id);
 
+    const wishlist = useSelector((state) => state.wishlist.wishlist);
+    const wishlistHasProduct = wishlist.find((w) => w._id === product._id);
+
     function handleAddToCart(product) {
         dispatch(addToCart({ encodedToken, product }));
+    }
+
+    function handleAddToWishlist(product) {
+        dispatch(addToWishlist({ encodedToken, product }));
+    }
+
+    function handleRemoveFromWishlist(product) {
+        dispatch(removeFromWishlist({ encodedToken, productId: product._id }));
     }
 
     return (
@@ -41,8 +53,15 @@ export function SingleProduct() {
                     >
                         {cartHasProduct ? "Go to cart" : "Add to cart"}
                     </button>
-                    <button className="single-product__button button button--secondary">
-                        Add to wishlist
+                    <button
+                        className="single-product__button button button--secondary"
+                        onClick={
+                            wishlistHasProduct
+                                ? () => handleRemoveFromWishlist(product)
+                                : () => handleAddToWishlist(product)
+                        }
+                    >
+                        {wishlistHasProduct ? "Unwishlist" : "Add to wishlist"}
                     </button>
                 </div>
             </div>
