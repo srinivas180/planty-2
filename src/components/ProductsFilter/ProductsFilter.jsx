@@ -1,6 +1,15 @@
+import { useDispatch } from "react-redux";
+
 import { categories } from "../../backend/db/categories";
+import { setFilters } from "../../slices/productsSlice";
 
 export function ProductsFilter() {
+    const dispatch = useDispatch();
+
+    function handleSortBy(e) {
+        dispatch(setFilters(e.target.value));
+    }
+
     return (
         <div className="filters">
             <div className="filters__header">
@@ -41,8 +50,9 @@ export function ProductsFilter() {
                     <input
                         className="filters__input"
                         type="radio"
-                        value="SORT_LOW_TO_HIGH"
+                        value="priceLowToHigh"
                         name="rating"
+                        onClick={handleSortBy}
                     />
                     Price - Low to High
                 </label>
@@ -50,8 +60,9 @@ export function ProductsFilter() {
                     <input
                         className="filters__input"
                         type="radio"
-                        value="SORT_HIGH_TO_LOW"
+                        value="priceHighToLow"
                         name="rating"
+                        onClick={handleSortBy}
                     />
                     Price - High to Low
                 </label>

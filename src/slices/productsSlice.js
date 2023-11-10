@@ -2,6 +2,9 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     products: [],
+    filters: {
+        sortBy: "",
+    },
     status: "idle",
 };
 
@@ -23,7 +26,11 @@ export const fetchProducts = createAsyncThunk(
 export const productsSlice = createSlice({
     name: "products",
     initialState,
-    reducers: {},
+    reducers: {
+        setFilters: (state, action) => {
+            state.filters.sortBy = action.payload;
+        },
+    },
     extraReducers: {
         [fetchProducts.pending]: (state) => {
             state.status = "loading";
@@ -35,4 +42,5 @@ export const productsSlice = createSlice({
     },
 });
 
+export const { setFilters } = productsSlice.actions;
 export default productsSlice.reducer;
