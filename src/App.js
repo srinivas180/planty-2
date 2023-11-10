@@ -8,6 +8,7 @@ import { Wishlist } from "./pages/Wishlist/Wishlist";
 import { Cart } from "./pages/Cart/Cart";
 import { Login } from "./pages/Login/Login";
 import { SignUp } from "./pages/SignUp/SignUp";
+import { Profile } from "./pages/Profile/Profile";
 
 import { Navbar } from "./components/Navbar/Navbar";
 
@@ -25,6 +26,7 @@ function App() {
                 <Route path="/cart" element={<Cart />} />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
+                <Route path="/profile" element={<Profile />} />
             </Routes>
         </div>
     );

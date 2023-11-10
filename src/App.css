@@ -149,3 +149,8 @@ html {
     top: 10px;
     cursor: pointer;
 }
+
+.property {
+    font-weight: 500;
+    margin-right: 4px;
+}
