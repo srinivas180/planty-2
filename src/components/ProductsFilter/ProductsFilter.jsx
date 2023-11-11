@@ -1,13 +1,20 @@
-import { useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
 
 import { categories } from "../../backend/db/categories";
 import { setFilters, setCategory } from "../../slices/productsSlice";
 
 export function ProductsFilter() {
     const dispatch = useDispatch();
+    const filters = useSelector((state) => state.products.filters);
 
     function handleChangedCategory(changedCategoryIndex) {
         dispatch(setCategory(changedCategoryIndex));
+    }
+
+    function handleRating(e) {
+        dispatch(
+            setFilters({ filterName: "rating", filterValue: e.target.value })
+        );
     }
 
     function handleSortBy(e) {
@@ -42,15 +49,17 @@ export function ProductsFilter() {
 
             {/* Rating Filter */}
             <div className="filters__container">
-                <h3 className="filters__heading">Rating (2 and above)</h3>
+                <h3 className="filters__heading">
+                    Rating ({filters.rating} and above)
+                </h3>
                 <input
                     className="filters__input input__range"
                     type="range"
                     min="1"
                     max="5"
                     step="1"
-                    defaultValue="1"
-                    value={2}
+                    value={filters.rating}
+                    onChange={handleRating}
                 />
             </div>
 

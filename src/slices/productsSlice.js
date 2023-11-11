@@ -5,6 +5,7 @@ const initialState = {
     filters: {
         sortBy: "",
         categories: [],
+        rating: 0,
     },
     status: "idle",
 };

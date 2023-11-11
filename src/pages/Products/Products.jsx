@@ -38,6 +38,10 @@ export function Products() {
         );
     }
 
+    filteredProducts = filteredProducts.filter(
+        (product) => product.rating >= filters.rating
+    );
+
     if (filters.sortBy === "priceLowToHigh") {
         filteredProducts = filteredProducts
             .slice()
