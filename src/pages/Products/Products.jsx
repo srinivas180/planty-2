@@ -61,7 +61,10 @@ export function Products() {
         <div className="row row--products container">
             <ProductsFilter />
             <div className="products">
-                <h2>Products (showing 10 of 50 plants)</h2>
+                <h2>
+                    Products (showing {filteredProducts.length} of{" "}
+                    {products.length} plants)
+                </h2>
                 <div className="products__list">
                     {filteredProducts.map((product) => (
                         <Product
