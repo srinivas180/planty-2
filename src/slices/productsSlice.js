@@ -37,6 +37,13 @@ export const productsSlice = createSlice({
             state.filters.categories[action.payload] =
                 !state.filters.categories[action.payload];
         },
+        resetFilters: (state, action) => {
+            state.filters = {
+                sortBy: "",
+                categories: [],
+                rating: 0,
+            };
+        },
     },
     extraReducers: {
         [fetchProducts.pending]: (state) => {
@@ -49,5 +56,5 @@ export const productsSlice = createSlice({
     },
 });
 
-export const { setFilters, setCategory } = productsSlice.actions;
+export const { setFilters, setCategory, resetFilters } = productsSlice.actions;
 export default productsSlice.reducer;

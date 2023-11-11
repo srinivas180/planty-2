@@ -1,7 +1,11 @@
 import { useDispatch, useSelector } from "react-redux";
 
 import { categories } from "../../backend/db/categories";
-import { setFilters, setCategory } from "../../slices/productsSlice";
+import {
+    setFilters,
+    setCategory,
+    resetFilters,
+} from "../../slices/productsSlice";
 
 export function ProductsFilter() {
     const dispatch = useDispatch();
@@ -23,11 +27,18 @@ export function ProductsFilter() {
         );
     }
 
+    function handleClearFilters() {
+        dispatch(resetFilters());
+    }
+
     return (
         <div className="filters">
             <div className="filters__header">
                 <h2 className="filters__title">Filters</h2>
-                <button className="button button--primary">
+                <button
+                    className="button button--primary"
+                    onClick={handleClearFilters}
+                >
                     Clear Filters
                 </button>
             </div>
@@ -40,6 +51,7 @@ export function ProductsFilter() {
                             className="filters__input"
                             type="checkbox"
                             value={category.categoryName}
+                            checked={filters.categories[index]}
                             onChange={() => handleChangedCategory(index)}
                         />
                         {category.categoryName}
@@ -73,6 +85,7 @@ export function ProductsFilter() {
                         value="priceLowToHigh"
                         name="rating"
                         onClick={handleSortBy}
+                        checked={filters.sortBy === "priceLowToHigh"}
                     />
                     Price - Low to High
                 </label>
@@ -83,6 +96,7 @@ export function ProductsFilter() {
                         value="priceHighToLow"
                         name="rating"
                         onClick={handleSortBy}
+                        checked={filters.sortBy === "priceHighToLow"}
                     />
                     Price - High to Low
                 </label>
