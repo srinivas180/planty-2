@@ -1,10 +1,14 @@
 import { useDispatch } from "react-redux";
 
 import { categories } from "../../backend/db/categories";
-import { setFilters } from "../../slices/productsSlice";
+import { setFilters, setCategory } from "../../slices/productsSlice";
 
 export function ProductsFilter() {
     const dispatch = useDispatch();
+
+    function handleChangedCategory(changedCategoryIndex) {
+        dispatch(setCategory(changedCategoryIndex));
+    }
 
     function handleSortBy(e) {
         dispatch(
@@ -23,9 +27,14 @@ export function ProductsFilter() {
             {/* Category Filter */}
             <div className="filters__container">
                 <h3 className="filters__heading">Category</h3>
-                {categories.map((category) => (
+                {categories.map((category, index) => (
                     <label key={category._id} className="filters__label">
-                        <input className="filters__input" type="checkbox" />
+                        <input
+                            className="filters__input"
+                            type="checkbox"
+                            value={category.categoryName}
+                            onChange={() => handleChangedCategory(index)}
+                        />
                         {category.categoryName}
                     </label>
                 ))}

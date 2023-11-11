@@ -4,6 +4,7 @@ const initialState = {
     products: [],
     filters: {
         sortBy: "",
+        categories: [],
     },
     status: "idle",
 };
@@ -31,6 +32,10 @@ export const productsSlice = createSlice({
             state.filters[action.payload.filterName] =
                 action.payload.filterValue;
         },
+        setCategory: (state, action) => {
+            state.filters.categories[action.payload] =
+                !state.filters.categories[action.payload];
+        },
     },
     extraReducers: {
         [fetchProducts.pending]: (state) => {
@@ -43,5 +48,5 @@ export const productsSlice = createSlice({
     },
 });
 
-export const { setFilters } = productsSlice.actions;
+export const { setFilters, setCategory } = productsSlice.actions;
 export default productsSlice.reducer;
