@@ -28,7 +28,8 @@ export const productsSlice = createSlice({
     initialState,
     reducers: {
         setFilters: (state, action) => {
-            state.filters.sortBy = action.payload;
+            state.filters[action.payload.filterName] =
+                action.payload.filterValue;
         },
     },
     extraReducers: {

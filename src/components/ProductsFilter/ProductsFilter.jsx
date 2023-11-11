@@ -7,7 +7,9 @@ export function ProductsFilter() {
     const dispatch = useDispatch();
 
     function handleSortBy(e) {
-        dispatch(setFilters(e.target.value));
+        dispatch(
+            setFilters({ filterName: "sortBy", filterValue: e.target.value })
+        );
     }
 
     return (
