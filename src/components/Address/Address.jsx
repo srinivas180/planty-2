@@ -1,9 +1,13 @@
 import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
+
 import { removeAddress } from "../../slices/addressSlice";
+import { logout } from "../../slices/authSlice";
 import "./Address.css";
 
 export function Address({ toggleAddressForm, setAddress, setIsEditAddress }) {
     const dispatch = useDispatch();
+    const navigate = useNavigate();
     const addresses = useSelector((state) => state.address.addresses);
 
     function handleAddAddress() {
@@ -19,6 +23,11 @@ export function Address({ toggleAddressForm, setAddress, setIsEditAddress }) {
 
     function handleRemoveAddress(addressId) {
         dispatch(removeAddress(addressId));
+    }
+
+    function handleLogout() {
+        dispatch(logout());
+        navigate("/");
     }
 
     return (
@@ -75,7 +84,12 @@ export function Address({ toggleAddressForm, setAddress, setIsEditAddress }) {
                 </>
             )}
 
-            <button className="button button--primary logout">Logout</button>
+            <button
+                className="button button--primary logout"
+                onClick={handleLogout}
+            >
+                Logout
+            </button>
         </>
     );
 }
