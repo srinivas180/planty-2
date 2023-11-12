@@ -1,0 +1,15 @@
+.account {
+    margin-bottom: 6px;
+}
+
+.profile__details {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    margin-bottom: 12px;
+}
+
+.profile__title {
+    font-weight: 500;
+    margin-right: 8px;
+}

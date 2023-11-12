@@ -1,0 +1,15 @@
+.address-form__heading {
+    font-size: 26px;
+    margin: 4px 0;
+}
+
+.address-form__buttons {
+    display: flex;
+    gap: 20px;
+}
+
+.address-form__button {
+    flex: 1;
+    font-size: 16px;
+    padding: 12px;
+}
