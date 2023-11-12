@@ -1,17 +1,15 @@
-import { useState } from "react";
+import { useDispatch } from "react-redux";
 
+import { addAddress, editAddress } from "../../slices/addressSlice";
 import "./AddressForm.css";
 
-export function AddressForm({ toggleAddressForm }) {
-    const [address, setAddress] = useState({
-        title: "",
-        houseNo: "",
-        colony: "",
-        city: "",
-        state: "",
-        country: "",
-        pinCode: "",
-    });
+export function AddressForm({
+    toggleAddressForm,
+    address,
+    setAddress,
+    isEditAddress,
+}) {
+    const dispatch = useDispatch();
 
     function handleInputChange(e) {
         setAddress((address) => ({
@@ -37,6 +35,11 @@ export function AddressForm({ toggleAddressForm }) {
             className="column column--gap-20"
             onSubmit={(event) => {
                 event.preventDefault();
+
+                isEditAddress
+                    ? dispatch(editAddress(address))
+                    : dispatch(addAddress(address));
+
                 toggleAddressForm();
                 resetForm();
             }}

@@ -1,18 +1,25 @@
+import { useDispatch, useSelector } from "react-redux";
+import { removeAddress } from "../../slices/addressSlice";
 import "./Address.css";
 
-export function Address({ toggleAddressForm }) {
-    const addresses = [
-        {
-            _id: 2,
-            title: "Home",
-            houseNo: "4534",
-            colony: "MG Colony",
-            city: "Pune",
-            state: "Maharashtra",
-            country: "India",
-            pinCode: "543234",
-        },
-    ];
+export function Address({ toggleAddressForm, setAddress, setIsEditAddress }) {
+    const dispatch = useDispatch();
+    const addresses = useSelector((state) => state.address.addresses);
+
+    function handleAddAddress() {
+        toggleAddressForm();
+        setIsEditAddress(false);
+    }
+
+    function handleEditAddress(address) {
+        toggleAddressForm();
+        setIsEditAddress(true);
+        setAddress(address);
+    }
+
+    function handleRemoveAddress(addressId) {
+        dispatch(removeAddress(addressId));
+    }
 
     return (
         <>
@@ -20,7 +27,7 @@ export function Address({ toggleAddressForm }) {
                 <h3 className="account__sub-heading">Address</h3>
                 <button
                     className="add-address button button--primary"
-                    onClick={toggleAddressForm}
+                    onClick={handleAddAddress}
                 >
                     Add Address
                 </button>
@@ -48,10 +55,18 @@ export function Address({ toggleAddressForm }) {
                             </div>
                             <div>{address.country}</div>
                             <div className="address__buttons">
-                                <button className="button button--secondary address__button">
+                                <button
+                                    className="button button--secondary address__button"
+                                    onClick={() => handleEditAddress(address)}
+                                >
                                     Edit
                                 </button>
-                                <button className="button button--secondary address__button">
+                                <button
+                                    className="button button--secondary address__button"
+                                    onClick={() =>
+                                        handleRemoveAddress(address._id)
+                                    }
+                                >
                                     Remove
                                 </button>
                             </div>

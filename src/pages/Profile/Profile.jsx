@@ -9,6 +9,17 @@ import "./Profile.css";
 export function Profile() {
     const [showAddressForm, setShowAddressForm] = useState(false);
 
+    const [address, setAddress] = useState({
+        title: "",
+        houseNo: "",
+        colony: "",
+        city: "",
+        state: "",
+        country: "",
+        pinCode: "",
+    });
+    const [isEditAddress, setIsEditAddress] = useState(false);
+
     function toggleAddressForm() {
         setShowAddressForm(!showAddressForm);
     }
@@ -17,10 +28,19 @@ export function Profile() {
         <>
             <div className="container column profile">
                 <ProfileDetails />
-                <Address toggleAddressForm={toggleAddressForm} />
+                <Address
+                    toggleAddressForm={toggleAddressForm}
+                    setAddress={setAddress}
+                    setIsEditAddress={setIsEditAddress}
+                />
             </div>
             <Modal show={showAddressForm}>
-                <AddressForm toggleAddressForm={toggleAddressForm} />
+                <AddressForm
+                    toggleAddressForm={toggleAddressForm}
+                    address={address}
+                    setAddress={setAddress}
+                    isEditAddress={isEditAddress}
+                />
             </Modal>
         </>
     );
