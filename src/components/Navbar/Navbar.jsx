@@ -1,8 +1,11 @@
 import { NavLink, Link } from "react-router-dom";
+import { useSelector } from "react-redux";
 
 import "./Navbar.css";
 
 export function Navbar() {
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
     return (
         <header className="header container">
             <div className="logo">
@@ -14,9 +17,13 @@ export function Navbar() {
                 <NavLink className="nav__link" to="/products">
                     Products
                 </NavLink>
-                <NavLink className="nav__link">Wishlist</NavLink>
-                <NavLink className="nav__link">Cart</NavLink>
-                {false ? (
+                <NavLink className="nav__link" to="/wishlist">
+                    Wishlist
+                </NavLink>
+                <NavLink className="nav__link" to="/cart">
+                    Cart
+                </NavLink>
+                {isLoggedIn ? (
                     <NavLink className="nav__link" to="/profile">
                         Profile
                     </NavLink>

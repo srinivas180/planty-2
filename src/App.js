@@ -12,6 +12,7 @@ import { Profile } from "./pages/Profile/Profile";
 import { Checkout } from "./pages/Checkout/Checkout";
 
 import { Navbar } from "./components/Navbar/Navbar";
+import { ProtectedRoute } from "./components/ProtectedRoute/ProtectedRoute";
 
 import "./App.css";
 
@@ -23,8 +24,22 @@ function App() {
                 <Route path="/" element={<Home />} />
                 <Route path="/products" element={<Products />} />
                 <Route path="/product/:productId" element={<SingleProduct />} />
-                <Route path="/wishlist" element={<Wishlist />} />
-                <Route path="/cart" element={<Cart />} />
+                <Route
+                    path="/wishlist"
+                    element={
+                        <ProtectedRoute>
+                            <Wishlist />
+                        </ProtectedRoute>
+                    }
+                />
+                <Route
+                    path="/cart"
+                    element={
+                        <ProtectedRoute>
+                            <Cart />
+                        </ProtectedRoute>
+                    }
+                />
                 <Route path="/login" element={<Login />} />
                 <Route path="/signup" element={<SignUp />} />
                 <Route path="/profile" element={<Profile />} />
