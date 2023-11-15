@@ -1,42 +1,42 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, Link } from "react-router-dom";
 
 import "./Navbar.css";
 
 export function Navbar() {
     return (
-        <div className="row row--nav container">
-            <div className="left">
-                <h1 className="title">Planty</h1>
+        <header className="header container">
+            <div className="logo">
+                <Link to="/" className="logo__link">
+                    <h1 className="logo__name">Planty</h1>
+                </Link>
             </div>
+            <nav className="nav">
+                <NavLink className="nav__link" to="/products">
+                    Products
+                </NavLink>
+                <NavLink className="nav__link">Wishlist</NavLink>
+                <NavLink className="nav__link">Cart</NavLink>
+                {false ? (
+                    <NavLink className="nav__link" to="/profile">
+                        Profile
+                    </NavLink>
+                ) : (
+                    <NavLink className="nav__link" to="/login">
+                        Login
+                    </NavLink>
+                )}
+            </nav>
 
-            <div className="right">
-                <nav className="nav">
-                    <ul className="nav__list">
-                        <li className="nav__item">
-                            <NavLink to="/products">Products</NavLink>
-                        </li>
-                        <li className="nav__item">
-                            <NavLink to="/wishlist">Wishlist</NavLink>
-                        </li>
-                        <li className="nav__item">
-                            <NavLink to="/cart">Cart</NavLink>
-                        </li>
-                    </ul>
-                </nav>
-
-                <ul className="options">
-                    <li className="options__item">Search</li>
-                    <li className="options__item">
-                        <NavLink to="/login">Login</NavLink>
-                    </li>
-                    <li className="options__item">
-                        <NavLink to="/signup">Sign Up</NavLink>
-                    </li>
-                    <li className="options__item">
-                        <NavLink to="/profile">Profile</NavLink>
-                    </li>
-                </ul>
+            <div className="search">
+                <label className="search__label">
+                    <input
+                        title="Search for products"
+                        className="search__input"
+                        type="search"
+                        placeholder="Search for products"
+                    />
+                </label>
             </div>
-        </div>
+        </header>
     );
 }
