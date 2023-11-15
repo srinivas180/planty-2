@@ -6,6 +6,7 @@ const initialState = {
         sortBy: "",
         categories: [],
         rating: 0,
+        search: "",
     },
     status: "idle",
 };

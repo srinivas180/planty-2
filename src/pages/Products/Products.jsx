@@ -18,6 +18,12 @@ export function Products() {
 
     let filteredProducts = products;
 
+    if (filters.search !== "") {
+        filteredProducts = filteredProducts.filter((product) =>
+            product.title.toLowerCase().includes(filters.search.toLowerCase())
+        );
+    }
+
     if (!showAllCategories) {
         filteredProducts = filters.categories.reduce(
             (filteredCategoryProducts, isCategorySelected, index) => {
