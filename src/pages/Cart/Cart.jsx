@@ -72,9 +72,12 @@ export function Cart() {
                             You will save ₹100.00 on this order
                         </p>
 
-                        <button className="button button--primary price-details__checkout">
+                        <Link
+                            to="/checkout"
+                            className="link link--primary price-details__checkout"
+                        >
                             Checkout
-                        </button>
+                        </Link>
                     </div>
                 </div>
             )}

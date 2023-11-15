@@ -25,6 +25,22 @@ html {
     margin: 0;
 }
 
+.link {
+    text-decoration: none;
+    border-radius: 10px;
+}
+
+.link--primary {
+    border: 1px solid var(--secondary);
+    background-color: var(--secondary);
+    color: var(--primary);
+}
+
+.link--primary:hover {
+    background-color: var(--primary);
+    color: white;
+}
+
 .row {
     display: flex;
 }
