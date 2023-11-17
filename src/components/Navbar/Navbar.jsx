@@ -50,10 +50,10 @@ export function Navbar() {
             <div className="search">
                 <label className="search__label">
                     <input
-                        title="Search for products"
+                        title="Search for products by product names"
                         className="search__input"
                         type="search"
-                        placeholder="Search for products"
+                        placeholder="Search for products by product name"
                         name="search"
                         value={filters.search}
                         onChange={handleSearch}
