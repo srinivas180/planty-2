@@ -1,26 +1,34 @@
-import home from "../../assets/images/home.jpg";
-import office from "../../assets/images/office.webp";
-import garden from "../../assets/images/garden.jpg";
+import { useEffect } from "react";
+import { useSelector, useDispatch } from "react-redux";
+
+import { fetchCategories } from "../../slices/productsSlice";
 
 import "./Categories.css";
 
 export function Categories() {
+    const dispatch = useDispatch();
+    const categories = useSelector((state) => state.products.categories);
+
+    useEffect(() => {
+        dispatch(fetchCategories());
+    }, [dispatch]);
+
     return (
         <div className="categories-container">
             <h2 className="categories-heading">Categories</h2>
             <div className="categories">
-                <div className="category">
-                    <img className="category__image" src={home} alt="" />
-                    <div className="category__text">Home</div>
-                </div>
-                <div className="category">
-                    <img className="category__image" src={office} alt="" />
-                    <div className="category__text">Office</div>
-                </div>
-                <div className="category">
-                    <img className="category__image" src={garden} alt="" />
-                    <div className="category__text">Garden</div>
-                </div>
+                {categories.slice(0, 3).map((category) => (
+                    <div className="category">
+                        <img
+                            className="category__image"
+                            src={category.imageLink}
+                            alt={category.altText}
+                        />
+                        <div className="category__text">
+                            {category.categoryName}
+                        </div>
+                    </div>
+                ))}
             </div>
         </div>
     );
