@@ -1,4 +1,4 @@
-import { NavLink, Link } from "react-router-dom";
+import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
 import { setFilters } from "../../slices/productsSlice";
@@ -6,6 +6,7 @@ import { setFilters } from "../../slices/productsSlice";
 import "./Navbar.css";
 
 export function Navbar() {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
     const filters = useSelector((state) => state.products.filters);
@@ -14,6 +15,8 @@ export function Navbar() {
         dispatch(
             setFilters({ filterName: "search", filterValue: e.target.value })
         );
+
+        navigate("/products");
     }
 
     return (
