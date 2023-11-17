@@ -2,6 +2,7 @@ import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
 
 const initialState = {
     products: [],
+    categories: [],
     filters: {
         sortBy: "",
         categories: [],
@@ -10,6 +11,21 @@ const initialState = {
     },
     status: "idle",
 };
+
+export const fetchCategories = createAsyncThunk(
+    "products/categories",
+    async () => {
+        try {
+            const response = await fetch("api/categories");
+            if (response.status === 200) {
+                const json = await response.json();
+                return json.categories;
+            }
+        } catch (error) {
+            console.error(error);
+        }
+    }
+);
 
 export const fetchProducts = createAsyncThunk(
     "products/fetchProducts",
@@ -53,6 +69,13 @@ export const productsSlice = createSlice({
         [fetchProducts.fulfilled]: (state, action) => {
             state.status = "success";
             state.products = action.payload;
+        },
+        [fetchCategories.pending]: (state) => {
+            state.status = "loading";
+        },
+        [fetchCategories.fulfilled]: (state, action) => {
+            state.status = "success";
+            state.categories = action.payload;
         },
     },
 });
