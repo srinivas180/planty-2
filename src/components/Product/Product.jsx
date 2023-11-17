@@ -35,7 +35,7 @@ export function Product({ product, isWishlistItem }) {
                 <img
                     className="product__image"
                     src={product.imageLink}
-                    alt=""
+                    alt={product.title}
                 />
             </Link>
             {!isWishlistItem ? (
