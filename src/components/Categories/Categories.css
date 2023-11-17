@@ -27,10 +27,11 @@
 
 .category {
     position: relative;
+    flex-grow: 1;
 }
 
 .category__image {
-    width: 350px;
+    width: 100%;
     height: 200px;
     border-radius: 12px;
 }
@@ -39,4 +40,5 @@
     text-align: center;
     font-weight: 500;
     font-size: 18px;
+    margin-top: 10px;
 }
