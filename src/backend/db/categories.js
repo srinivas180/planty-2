@@ -1,5 +1,9 @@
 import { v4 as uuid } from "uuid";
 
+import home from "../../assets/images/home.jpg";
+import office from "../../assets/images/office.webp";
+import garden from "../../assets/images/garden.jpg";
+
 /**
  * Category Database can be added here.
  * You can add category of your wish with different attributes
@@ -8,9 +12,16 @@ import { v4 as uuid } from "uuid";
 export const categories = [
     {
         _id: uuid(),
+        categoryName: "Air Purifier Plants",
+        imageLink: office,
+        altText: "money plant",
+        description:
+            "This plants requires very low sunlight, low maintenance and also purifies air.",
+    },
+    {
+        _id: uuid(),
         categoryName: "Indoor Plants",
-        imageLink:
-            "https://res.cloudinary.com/dt6nk7xus/image/upload/v1689936149/planty/rp4xs4tn_i8ldx6.png",
+        imageLink: home,
         altText: "aglaonema red emerald indoor plant",
         description:
             "This plants grow under low sunlight and requires less maintenance.",
@@ -18,20 +29,10 @@ export const categories = [
     {
         _id: uuid(),
         categoryName: "Outdoor Plants",
-        imageLink:
-            "https://res.cloudinary.com/dt6nk7xus/image/upload/v1689937429/planty/giuo7n6r_qyvfun.png",
+        imageLink: garden,
         altText: "adenium white double flower outdoor plant",
         description:
             "This plants grow under direct sunlight and requires you to water frequently.",
-    },
-    {
-        _id: uuid(),
-        categoryName: "Air Purifier Plants",
-        imageLink:
-            "https://res.cloudinary.com/dt6nk7xus/image/upload/v1689937529/planty/ieen7lt5_zzsysd.png",
-        altText: "money plant",
-        description:
-            "This plants requires very low sunlight, low maintenance and also purifies air.",
     },
     {
         _id: uuid(),
