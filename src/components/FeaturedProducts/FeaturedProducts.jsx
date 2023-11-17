@@ -1,3 +1,5 @@
+import { Link } from "react-router-dom";
+
 import plant1 from "../../assets/images/plant-1.jpg";
 import plant2 from "../../assets/images/plant-2.jpg";
 import plant3 from "../../assets/images/plant-3.jpg";
@@ -51,7 +53,7 @@ export function FeaturedProducts() {
             </div>
             <div className="featured-products">
                 {featuredProducts.map((featuredProduct) => (
-                    <div className="featured-product">
+                    <Link className="link featured-product" to="/products">
                         <img
                             className="featured-product__image"
                             src={featuredProduct.img}
@@ -63,7 +65,7 @@ export function FeaturedProducts() {
                         <span className="featured-product__price">
                             Rs. {featuredProduct.price}.00
                         </span>
-                    </div>
+                    </Link>
                 ))}
             </div>
         </div>
