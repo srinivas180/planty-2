@@ -28,6 +28,7 @@
 .category {
     position: relative;
     flex-grow: 1;
+    cursor: pointer;
 }
 
 .category__image {
