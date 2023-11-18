@@ -54,6 +54,7 @@ export function SignUp() {
                 <h2 className="form__heading">Sign Up</h2>
                 <input
                     className="form__input"
+                    required
                     type="text"
                     placeholder="First Name"
                     name="firstName"
@@ -62,6 +63,7 @@ export function SignUp() {
                 />
                 <input
                     className="form__input"
+                    required
                     type="text"
                     placeholder="Last Name"
                     name="lastName"
@@ -70,6 +72,7 @@ export function SignUp() {
                 />
                 <input
                     className="form__input"
+                    required
                     type="email"
                     placeholder="Email"
                     name="email"
@@ -99,6 +102,7 @@ export function SignUp() {
                     <input
                         name="confirm-password"
                         className="form__input"
+                        required
                         type={showConfirmPassword ? "text" : "password"}
                         placeholder="Confirm Password"
                     />
