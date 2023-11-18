@@ -1,10 +1,14 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useEffect, useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { NavLink } from "react-router-dom";
+
 import { login } from "../../slices/authSlice";
 
 export function Login() {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
     const [userCreds, setUserCreds] = useState({ email: "", password: "" });
 
     function handleInputChange(e) {
@@ -18,6 +22,12 @@ export function Login() {
         e.preventDefault();
         dispatch(login(userCreds));
     }
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            navigate("/");
+        }
+    }, [isLoggedIn]);
 
     return (
         <div className="container column column--center">

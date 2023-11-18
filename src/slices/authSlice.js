@@ -19,7 +19,11 @@ export const login = createAsyncThunk("auth/login", async (userCredentials) => {
             localStorage.setItem("encodedToken", encodedToken);
             localStorage.setItem("user", JSON.stringify(foundUser));
 
-            return { encodedToken, foundUser, isLoggedIn: true };
+            return {
+                encodedToken,
+                foundUser,
+                isLoggedIn: true,
+            };
         }
     } catch (error) {
         console.error(error);
@@ -64,10 +68,12 @@ export const authSlice = createSlice({
             state.status = "loading";
         },
         [login.fulfilled]: (state, action) => {
-            state.status = "success";
-            state.user = action.payload.foundUser;
-            state.encodedToken = action.payload.encodedToken;
-            state.isLoggedIn = action.payload.isLoggedIn;
+            if (action.payload) {
+                state.status = "success";
+                state.user = action.payload.foundUser;
+                state.encodedToken = action.payload.encodedToken;
+                state.isLoggedIn = action.payload.isLoggedIn;
+            }
         },
         [signup.pending]: (state) => {
             state.status = "loading";
