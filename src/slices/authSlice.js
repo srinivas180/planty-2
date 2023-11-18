@@ -79,10 +79,12 @@ export const authSlice = createSlice({
             state.status = "loading";
         },
         [signup.fulfilled]: (state, action) => {
-            state.status = "success";
-            state.user = action.payload.createdUser;
-            state.encodedToken = action.payload.encodedToken;
-            state.isLoggedIn = action.payload.isLoggedIn;
+            if (action.payload) {
+                state.status = "success";
+                state.user = action.payload.createdUser;
+                state.encodedToken = action.payload.encodedToken;
+                state.isLoggedIn = action.payload.isLoggedIn;
+            }
         },
     },
 });

@@ -1,11 +1,15 @@
-import { useState } from "react";
-import { useDispatch } from "react-redux";
+import { useState, useEffect } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { useNavigate } from "react-router";
 import { NavLink } from "react-router-dom";
 
 import { signup } from "../../slices/authSlice";
 
 export function SignUp() {
+    const navigate = useNavigate();
     const dispatch = useDispatch();
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
+
     const [userDetails, setUserDetails] = useState({
         firstName: "",
         lastName: "",
@@ -24,6 +28,12 @@ export function SignUp() {
         e.preventDefault();
         dispatch(signup(userDetails));
     }
+
+    useEffect(() => {
+        if (isLoggedIn) {
+            navigate("/");
+        }
+    }, [isLoggedIn]);
 
     return (
         <div className="container column column--center">
