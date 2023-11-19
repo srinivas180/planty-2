@@ -1,6 +1,7 @@
 import { useState } from "react";
 import { Link } from "react-router-dom";
 import { useSelector } from "react-redux";
+import { toast } from "react-toastify";
 
 import { PriceDetails } from "../../components/PriceDetails/PriceDetails";
 
@@ -93,7 +94,15 @@ export function Checkout() {
                         </div>
                     </div>
 
-                    <Link className="link link--primary price__checkout" to="/">
+                    <Link
+                        className="link link--primary price__checkout"
+                        to="/"
+                        onClick={() => {
+                            toast.success("Placed your order successfully", {
+                                position: "bottom-right",
+                            });
+                        }}
+                    >
                         Place Order
                     </Link>
                 </div>

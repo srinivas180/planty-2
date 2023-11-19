@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const initialState = {
     cart: [],
@@ -23,6 +24,9 @@ export const addToCart = createAsyncThunk(
                 return json.cart;
             }
         } catch (error) {
+            toast.error("Some error occurred. Cannot add to cart.", {
+                position: "bottom-right",
+            });
             console.error(error);
         }
     }
@@ -44,6 +48,9 @@ export const removeFromCart = createAsyncThunk(
                 return json.cart;
             }
         } catch (error) {
+            toast.error("Some error occurred. Cannot remove from cart.", {
+                position: "bottom-right",
+            });
             console.error(error);
         }
     }
@@ -70,6 +77,12 @@ export const productQuantityHandler = createAsyncThunk(
                 return json.cart;
             }
         } catch (error) {
+            toast.error(
+                "Some error occurred. Cannot increase/decrease quantity.",
+                {
+                    position: "bottom-right",
+                }
+            );
             console.error(error);
         }
     }
@@ -86,6 +99,10 @@ export const cartSlice = createSlice({
         [addToCart.fulfilled]: (state, action) => {
             state.status = "success";
             state.cart = action.payload;
+
+            toast.success("Added to cart", {
+                position: "bottom-right",
+            });
         },
         [removeFromCart.pending]: (state) => {
             state.status = "loading";
@@ -93,6 +110,9 @@ export const cartSlice = createSlice({
         [removeFromCart.fulfilled]: (state, action) => {
             state.status = "success";
             state.cart = action.payload;
+            toast.success("Removed from cart", {
+                position: "bottom-right",
+            });
         },
 
         [productQuantityHandler.pending]: (state) => {
@@ -101,6 +121,9 @@ export const cartSlice = createSlice({
         [productQuantityHandler.fulfilled]: (state, action) => {
             state.status = "success";
             state.cart = action.payload;
+            toast.success(`quantity increased/decreased`, {
+                position: "bottom-right",
+            });
         },
     },
 });

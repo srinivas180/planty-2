@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const initialState = {
     products: [],
@@ -22,6 +23,9 @@ export const fetchCategories = createAsyncThunk(
                 return json.categories;
             }
         } catch (error) {
+            toast.error("Some error occurred. Fetching categories failed.", {
+                position: "bottom-right",
+            });
             console.error(error);
         }
     }
@@ -37,6 +41,9 @@ export const fetchProducts = createAsyncThunk(
                 return json.products;
             }
         } catch (error) {
+            toast.error("Some error occurred. Fetching products failed.", {
+                position: "bottom-right",
+            });
             console.error(error);
         }
     }

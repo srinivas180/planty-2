@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const initialState = {
     user: { email: "", password: "" },
@@ -26,6 +27,9 @@ export const login = createAsyncThunk("auth/login", async (userCredentials) => {
             };
         }
     } catch (error) {
+        toast.error("Some error occurred while logging in.", {
+            position: "bottom-right",
+        });
         console.error(error);
     }
 });
@@ -46,6 +50,9 @@ export const signup = createAsyncThunk("auth/signup", async (userDetails) => {
             return { encodedToken, createdUser, isLoggedIn: true };
         }
     } catch (error) {
+        toast.error("Some error occurred while signing up.", {
+            position: "bottom-right",
+        });
         console.error(error);
     }
 });
@@ -73,6 +80,10 @@ export const authSlice = createSlice({
                 state.user = action.payload.foundUser;
                 state.encodedToken = action.payload.encodedToken;
                 state.isLoggedIn = action.payload.isLoggedIn;
+
+                toast.success("successfully logged in.", {
+                    position: "bottom-right",
+                });
             }
         },
         [signup.pending]: (state) => {
@@ -84,6 +95,10 @@ export const authSlice = createSlice({
                 state.user = action.payload.createdUser;
                 state.encodedToken = action.payload.encodedToken;
                 state.isLoggedIn = action.payload.isLoggedIn;
+
+                toast.success("successfully signed up.", {
+                    position: "bottom-right",
+                });
             }
         },
     },

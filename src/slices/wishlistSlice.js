@@ -1,4 +1,5 @@
 import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
+import { toast } from "react-toastify";
 
 const initialState = {
     wishlist: [],
@@ -23,6 +24,9 @@ export const addToWishlist = createAsyncThunk(
                 return json.wishlist;
             }
         } catch (error) {
+            toast.error("Some error occurred. Cannot add to wishlist.", {
+                position: "bottom-right",
+            });
             console.error(error);
         }
     }
@@ -44,6 +48,9 @@ export const removeFromWishlist = createAsyncThunk(
                 return json.wishlist;
             }
         } catch (error) {
+            toast.error("Some error occurred. Cannot remove from wishlist.", {
+                position: "bottom-right",
+            });
             console.error(error);
         }
     }
@@ -60,6 +67,9 @@ export const wishlistSlice = createSlice({
         [addToWishlist.fulfilled]: (state, action) => {
             state.status = "success";
             state.wishlist = action.payload;
+            toast.success("Added to wishlist", {
+                position: "bottom-right",
+            });
         },
         [removeFromWishlist.pending]: (state) => {
             state.status = "loading";
@@ -67,6 +77,9 @@ export const wishlistSlice = createSlice({
         [removeFromWishlist.fulfilled]: (state, action) => {
             state.status = "success";
             state.wishlist = action.payload;
+            toast.success("Removed from wishlist", {
+                position: "bottom-right",
+            });
         },
     },
 });

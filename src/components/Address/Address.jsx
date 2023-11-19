@@ -1,5 +1,6 @@
 import { useDispatch, useSelector } from "react-redux";
 import { useNavigate } from "react-router";
+import { toast } from "react-toastify";
 
 import { removeAddress } from "../../slices/addressSlice";
 import { logout } from "../../slices/authSlice";
@@ -27,6 +28,9 @@ export function Address({ toggleAddressForm, setAddress, setIsEditAddress }) {
 
     function handleLogout() {
         dispatch(logout());
+        toast.success("successfully logged out.", {
+            position: "bottom-right",
+        });
         navigate("/");
     }
 
