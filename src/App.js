@@ -1,4 +1,7 @@
 import { Routes, Route } from "react-router";
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
+
 import Mockman from "mockman-js";
 
 import { Home } from "./pages/Home/Home";
@@ -45,6 +48,7 @@ function App() {
                 <Route path="/profile" element={<Profile />} />
                 <Route path="/checkout" element={<Checkout />} />
             </Routes>
+            <ToastContainer />
         </div>
     );
 }
