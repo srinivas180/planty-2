@@ -4,6 +4,9 @@ import { toast } from "react-toastify";
 
 import { removeAddress } from "../../slices/addressSlice";
 import { logout } from "../../slices/authSlice";
+import { resetFilters } from "../../slices/productsSlice";
+import { resetCart } from "../../slices/cartSlice";
+import { resetWishlist } from "../../slices/wishlistSlice";
 import "./Address.css";
 
 export function Address({ toggleAddressForm, setAddress, setIsEditAddress }) {
@@ -28,6 +31,9 @@ export function Address({ toggleAddressForm, setAddress, setIsEditAddress }) {
 
     function handleLogout() {
         dispatch(logout());
+        dispatch(resetFilters());
+        dispatch(resetCart());
+        dispatch(resetWishlist());
         toast.success("successfully logged out.", {
             position: "bottom-right",
         });

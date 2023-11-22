@@ -91,7 +91,11 @@ export const productQuantityHandler = createAsyncThunk(
 export const cartSlice = createSlice({
     name: "cart",
     initialState,
-    reducers: {},
+    reducers: {
+        resetCart: (state) => {
+            state.cart = [];
+        },
+    },
     extraReducers: {
         [addToCart.pending]: (state) => {
             state.status = "loading";
@@ -128,4 +132,5 @@ export const cartSlice = createSlice({
     },
 });
 
+export const { resetCart } = cartSlice.actions;
 export default cartSlice.reducer;

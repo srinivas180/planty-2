@@ -59,7 +59,11 @@ export const removeFromWishlist = createAsyncThunk(
 export const wishlistSlice = createSlice({
     name: "wishlist",
     initialState,
-    reducers: {},
+    reducers: {
+        resetWishlist: (state) => {
+            state.wishlist = [];
+        },
+    },
     extraReducers: {
         [addToWishlist.pending]: (state) => {
             state.status = "loading";
@@ -84,4 +88,5 @@ export const wishlistSlice = createSlice({
     },
 });
 
+export const { resetWishlist } = wishlistSlice.actions;
 export default wishlistSlice.reducer;

@@ -61,11 +61,12 @@ export const productsSlice = createSlice({
             state.filters.categories[action.payload] =
                 !state.filters.categories[action.payload];
         },
-        resetFilters: (state, action) => {
+        resetFilters: (state) => {
             state.filters = {
                 sortBy: "",
                 categories: [],
                 rating: 0,
+                search: "",
             };
         },
     },
