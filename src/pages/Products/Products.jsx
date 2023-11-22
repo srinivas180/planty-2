@@ -7,6 +7,7 @@ import { fetchProducts } from "../../slices/productsSlice";
 
 import "./Products.css";
 import { categories } from "../../backend/db/categories";
+import { Loading } from "../../components/Loading/Loading";
 
 export function Products() {
     const dispatch = useDispatch();
@@ -15,6 +16,7 @@ export function Products() {
     const showAllCategories = !filters.categories.find(
         (isCategorySelected) => isCategorySelected
     );
+    const loadingStatus = useSelector((state) => state.products.status);
 
     let filteredProducts = products;
 
@@ -71,16 +73,24 @@ export function Products() {
                     Products (showing {filteredProducts.length} of{" "}
                     {products.length} plants)
                 </h2>
-                <div className="products__list">
-                    {filteredProducts.length === 0
-                        ? "No products available for selected filters."
-                        : filteredProducts.map((product) => (
-                              <Product
-                                  key={product._id}
-                                  product={product}
-                                  isWishlistItem={false}
-                              />
-                          ))}
+                <div
+                    className={`products__list ${
+                        loadingStatus === "loading" ? "row--center" : ""
+                    }`}
+                >
+                    {loadingStatus === "loading" ? (
+                        <Loading size="120" />
+                    ) : filteredProducts.length === 0 ? (
+                        "No products available for selected filters."
+                    ) : (
+                        filteredProducts.map((product) => (
+                            <Product
+                                key={product._id}
+                                product={product}
+                                isWishlistItem={false}
+                            />
+                        ))
+                    )}
                 </div>
             </div>
         </div>
