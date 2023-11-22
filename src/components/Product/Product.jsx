@@ -10,6 +10,7 @@ export function Product({ product, isWishlistItem }) {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const encodedToken = useSelector((state) => state.auth.encodedToken);
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
     const cart = useSelector((state) => state.cart.cart);
     const cartHasProduct = cart.find((p) => p._id === product._id);
@@ -53,20 +54,24 @@ export function Product({ product, isWishlistItem }) {
             <div className="product__buttons">
                 <button
                     className=" button button--secondary product__button"
-                    onClick={
-                        wishlistHasProduct
-                            ? () => handleRemoveFromWishlist(product)
-                            : () => handleAddToWishlist(product)
+                    onClick={() =>
+                        isLoggedIn
+                            ? wishlistHasProduct
+                                ? handleRemoveFromWishlist(product)
+                                : handleAddToWishlist(product)
+                            : navigate("/login")
                     }
                 >
                     {wishlistHasProduct ? "Unwishlist" : "Add to wishlist"}
                 </button>
                 <button
                     className=" button button--primary product__button"
-                    onClick={
-                        cartHasProduct
-                            ? () => navigate("/cart")
-                            : () => handleAddToCart(product)
+                    onClick={() =>
+                        isLoggedIn
+                            ? cartHasProduct
+                                ? navigate("/cart")
+                                : handleAddToCart(product)
+                            : navigate("/login")
                     }
                 >
                     {cartHasProduct ? "Go to cart" : "Add to cart"}
