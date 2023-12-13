@@ -1,9 +1,12 @@
 import { useDispatch, useSelector } from "react-redux";
+import { debounce } from "lodash";
 
 import { removeFromCart, productQuantityHandler } from "../../slices/cartSlice";
 import { addToWishlist, removeFromWishlist } from "../../slices/wishlistSlice";
 
 import "./CartItem.css";
+
+const QUANTITY_UPDATE_DEBOUNCE_DELAY = 400;
 
 export function CartItem({ item }) {
     const dispatch = useDispatch();
@@ -16,9 +19,9 @@ export function CartItem({ item }) {
         dispatch(removeFromCart({ encodedToken, productId }));
     }
 
-    function handleQuantity(productId, type) {
+    const handleQuantity = debounce((productId, type) => {
         dispatch(productQuantityHandler({ productId, type, encodedToken }));
-    }
+    }, QUANTITY_UPDATE_DEBOUNCE_DELAY);
 
     function handleAddToWishlist(encodedToken, item) {
         dispatch(addToWishlist({ encodedToken, product: item }));
