@@ -1,6 +1,5 @@
 .featured-products-container {
-    width: 1100px;
-    margin: 100px auto;
+    margin: 100px 20px;
 }
 
 .featured-products__caption {
@@ -14,8 +13,8 @@
 
 .featured-products {
     display: grid;
-    grid-template-columns: repeat(3, 1fr);
-    gap: 54px;
+    grid-template-columns: 1fr;
+    gap: 32px;
     margin-top: 36px;
 }
 
@@ -40,4 +39,22 @@
 .featured-product__price {
     font-weight: 500;
     color: #2ba24f;
+}
+
+@media screen and (min-width: 768px) {
+    .featured-products {
+        grid-template-columns: repeat(2, 1fr);
+        gap: 54px;
+    }
+}
+
+@media screen and (min-width: 1024px) {
+    .featured-products-container {
+        width: 1100px;
+        margin: 100px auto;
+    }
+
+    .featured-products {
+        grid-template-columns: repeat(3, 1fr);
+    }
 }
