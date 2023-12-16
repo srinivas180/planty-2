@@ -1,0 +1,35 @@
+.hamburger {
+    width: 36px;
+    justify-self: end;
+    grid-area: hamburger;
+}
+
+.hamburger div,
+.hamburger::after,
+.hamburger::before {
+    content: "";
+    display: block;
+    background-color: black;
+    border-radius: 4px;
+    height: 4px;
+    margin: 6px 0;
+    transition: all 0.2s ease-in-out;
+}
+
+.hamburger.active:before {
+    transform: translateY(12px) rotate(45deg);
+}
+
+.hamburger.active:after {
+    transform: translateY(-8px) rotate(-45deg);
+}
+
+.hamburger.active div {
+    transform: scale(0);
+}
+
+@media screen and (min-width: 768px) {
+    .hamburger {
+        display: none;
+    }
+}
