@@ -6,7 +6,7 @@ import { addToCart } from "../../slices/cartSlice";
 import { addToWishlist, removeFromWishlist } from "../../slices/wishlistSlice";
 import "./SingleProduct.css";
 
-export function SingleProduct() {
+export default function SingleProduct() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const encodedToken = useSelector((state) => state.auth.encodedToken);

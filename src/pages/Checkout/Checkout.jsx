@@ -7,7 +7,7 @@ import { PriceDetails } from "../../components/PriceDetails/PriceDetails";
 
 import "./Checkout.css";
 
-export function Checkout() {
+export default function Checkout() {
     const cart = useSelector((state) => state.cart.cart);
     const addresses = useSelector((state) => state.address.addresses);
 

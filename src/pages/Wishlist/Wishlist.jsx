@@ -5,7 +5,7 @@ import { Product } from "../../components/Product/Product";
 
 import "./Wishlist.css";
 
-export function Wishlist() {
+export default function Wishlist() {
     const wishlist = useSelector((state) => state.wishlist.wishlist);
 
     return (

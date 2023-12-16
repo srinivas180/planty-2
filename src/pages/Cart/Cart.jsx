@@ -6,7 +6,7 @@ import { PriceDetails } from "../../components/PriceDetails/PriceDetails";
 
 import "./Cart.css";
 
-export function Cart() {
+export default function Cart() {
     const cart = useSelector((state) => state.cart.cart);
 
     return (

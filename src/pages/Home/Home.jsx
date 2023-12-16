@@ -4,7 +4,7 @@ import { Categories } from "../../components/Categories/Categories";
 import { Offers } from "../../components/Offers/Offers";
 import { FeaturedProducts } from "../../components/FeaturedProducts/FeaturedProducts";
 
-export function Home() {
+export default function Home() {
     return (
         <div>
             <Hero />

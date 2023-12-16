@@ -6,7 +6,7 @@ import { AddressForm } from "../../components/AddressForm/AddressForm";
 import { Modal } from "../../components/Modal/Modal";
 import "./Profile.css";
 
-export function Profile() {
+export default function Profile() {
     const [showAddressForm, setShowAddressForm] = useState(false);
 
     const [address, setAddress] = useState({

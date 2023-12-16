@@ -8,7 +8,7 @@ import { ClosedEyeIcon } from "../../components/ClosedEyeIcon/ClosedEyeIcon";
 
 import { signup } from "../../slices/authSlice";
 
-export function SignUp() {
+export default function SignUp() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);

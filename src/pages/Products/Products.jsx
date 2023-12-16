@@ -9,7 +9,7 @@ import "./Products.css";
 import { categories } from "../../backend/db/categories";
 import { Loading } from "../../components/Loading/Loading";
 
-export function Products() {
+export default function Products() {
     const dispatch = useDispatch();
     const products = useSelector((state) => state.products.products);
     const filters = useSelector((state) => state.products.filters);
