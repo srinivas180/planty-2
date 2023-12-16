@@ -1,6 +1,8 @@
+import { useState } from "react";
 import { NavLink, Link, useNavigate } from "react-router-dom";
 import { useSelector, useDispatch } from "react-redux";
 
+import Hamburger from "../Hamburger/Hamburger";
 import { setFilters } from "../../slices/productsSlice";
 
 import "./Navbar.css";
@@ -8,6 +10,7 @@ import "./Navbar.css";
 export function Navbar() {
     const navigate = useNavigate();
     const dispatch = useDispatch();
+    const [isMenuOpen, setIsMenuOpen] = useState(false);
     const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
     const filters = useSelector((state) => state.products.filters);
 
@@ -19,14 +22,19 @@ export function Navbar() {
         navigate("/products");
     }
 
+    function toggleMenu() {
+        setIsMenuOpen((isMenuOpen) => !isMenuOpen);
+    }
+
     return (
-        <header className="header container">
+        <header className={`container header ${isMenuOpen ? "active" : ""}`}>
             <div className="logo">
                 <Link to="/" className="logo__link">
                     <h1 className="logo__name">Planty</h1>
                 </Link>
             </div>
-            <nav className="nav">
+            <Hamburger isMenuOpen={isMenuOpen} toggleMenu={toggleMenu} />
+            <nav className={`nav ${isMenuOpen ? "active" : ""}`}>
                 <NavLink className="nav__link" to="/products">
                     Products
                 </NavLink>
