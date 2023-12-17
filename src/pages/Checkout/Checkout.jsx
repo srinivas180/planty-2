@@ -15,7 +15,7 @@ export default function Checkout() {
 
     return (
         <>
-            <div className="checkout container row row--center">
+            <div className="container column checkout">
                 {/* Address Options */}
                 <div>
                     <h2>Select Address</h2>
