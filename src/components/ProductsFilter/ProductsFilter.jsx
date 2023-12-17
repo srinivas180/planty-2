@@ -7,7 +7,7 @@ import {
     resetFilters,
 } from "../../slices/productsSlice";
 
-export function ProductsFilter() {
+export function ProductsFilter({ isFiltersOpen, toggleFilters }) {
     const dispatch = useDispatch();
     const filters = useSelector((state) => state.products.filters);
 
@@ -32,7 +32,7 @@ export function ProductsFilter() {
     }
 
     return (
-        <div className="filters">
+        <div className={`filters ${isFiltersOpen ? "show" : ""}`}>
             <div className="filters__header">
                 <h2 className="filters__title">Filters</h2>
                 <button
@@ -101,6 +101,13 @@ export function ProductsFilter() {
                     Price - High to Low
                 </label>
             </div>
+
+            <button
+                className="button button--secondary filters__close-btn"
+                onClick={toggleFilters}
+            >
+                Close
+            </button>
         </div>
     );
 }

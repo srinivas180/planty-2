@@ -1,8 +1,10 @@
-import { useEffect } from "react";
+import { useEffect, useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 
 import { ProductsFilter } from "../../components/ProductsFilter/ProductsFilter";
 import { Product } from "../../components/Product/Product";
+import { FiltersIcon } from "../../components/FiltersIcon/FiltersIcon";
+
 import { fetchProducts } from "../../slices/productsSlice";
 
 import "./Products.css";
@@ -17,6 +19,8 @@ export default function Products() {
         (isCategorySelected) => isCategorySelected
     );
     const loadingStatus = useSelector((state) => state.products.status);
+
+    const [isFiltersOpen, setIsFiltersOpen] = useState(false);
 
     let filteredProducts = products;
 
@@ -61,18 +65,31 @@ export default function Products() {
             .sort((a, b) => b.price - a.price);
     }
 
+    function toggleFilters() {
+        setIsFiltersOpen((isFiltersOpen) => !isFiltersOpen);
+    }
+
     useEffect(() => {
         dispatch(fetchProducts());
     }, [dispatch]);
 
     return (
-        <div className="row row--products container">
-            <ProductsFilter />
-            <div className="products">
-                <h2>
-                    Products (showing {filteredProducts.length} of{" "}
-                    {products.length} plants)
-                </h2>
+        <div className="row row--products container products-container">
+            <ProductsFilter
+                isFiltersOpen={isFiltersOpen}
+                toggleFilters={toggleFilters}
+            />
+            <div className={`products ${isFiltersOpen ? "hide" : ""}`}>
+                <div className="products__info">
+                    <h2 className="products__heading">
+                        Products{" "}
+                        <span className="products__count">
+                            (showing {filteredProducts.length} of{" "}
+                            {products.length} plants)
+                        </span>
+                    </h2>
+                    <FiltersIcon toggleFilters={toggleFilters} />
+                </div>
                 <div
                     className={`products__list ${
                         loadingStatus === "loading" ? "row--center" : ""
