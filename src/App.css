@@ -127,7 +127,7 @@ html {
 .form {
     gap: 24px;
     margin-bottom: 16px;
-    width: 26%;
+    width: 100%;
 }
 
 .form__heading {
@@ -169,4 +169,10 @@ html {
 .property {
     font-weight: 500;
     margin-right: 4px;
+}
+
+@media screen and (min-width: 768px) {
+    .form {
+        width: 25rem;
+    }
 }
