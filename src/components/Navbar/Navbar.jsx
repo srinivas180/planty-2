@@ -55,7 +55,7 @@ export function Navbar() {
                 )}
             </nav>
 
-            <div className="search">
+            <div className={`search ${isMenuOpen ? "hide" : ""}`}>
                 <label className="search__label">
                     <input
                         title="Search for products by product names"

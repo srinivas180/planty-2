@@ -32,8 +32,13 @@
 }
 
 .search {
+    visibility: visible;
     width: -webkit-fill-available;
     grid-area: search;
+}
+
+.search.hide {
+    visibility: hidden;
 }
 
 .search__input {
@@ -96,6 +101,11 @@
     .search {
         padding-right: 0;
         width: -webkit-fill-available;
+    }
+
+    .search,
+    .search.hide {
+        visibility: visible;
     }
 }
 
