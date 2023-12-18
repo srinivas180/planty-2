@@ -34,7 +34,7 @@ export default function SingleProduct() {
     }
 
     return (
-        <div className="row row--gap-32 row--align-start container single-product">
+        <div className="row--gap-32 container single-product">
             <div className="column column--gap-20 single-product__image-wrapper">
                 <img
                     className="single-product__image"
