@@ -19,7 +19,7 @@ export default function Cart() {
                     </Link>
                 </div>
             ) : (
-                <div className="container row row--center">
+                <div className="container cart-container">
                     <div className="cart">
                         <h2>Cart ({cart.length} items)</h2>
                         <div className="cart__items">
