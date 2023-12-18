@@ -1,12 +1,29 @@
 .offers {
-    display: flex;
-    margin: 70px 0;
+    display: block;
 }
 
 .offers__discount {
-    width: 50%;
+    width: 100%;
+    margin-top: 32px;
 }
 
 .offers__deal {
-    width: 50%;
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .offers {
+        display: flex;
+        margin: 70px 0;
+    }
+
+    .offers__discount {
+        width: 50%;
+        margin-top: 0px;
+    }
+
+    .offers__deal {
+        display: block;
+        width: 50%;
+    }
 }

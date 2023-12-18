@@ -1,7 +1,5 @@
 .about {
-    width: 1000px;
-    margin: 0 auto;
-    display: flex;
+    display: none;
 }
 
 .about__content {
@@ -26,4 +24,12 @@
 
 .about__image {
     width: 55%;
+}
+
+@media screen and (min-width: 1024px) {
+    .about {
+        width: 1000px;
+        margin: 0 auto;
+        display: flex;
+    }
 }

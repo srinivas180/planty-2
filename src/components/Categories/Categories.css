@@ -12,7 +12,7 @@
 .categories-heading::before,
 .categories-heading::after {
     display: inline-block;
-    width: 100px;
+    width: 80px;
     height: 3px;
     content: "";
     background-color: gainsboro;
@@ -50,6 +50,11 @@
 @media screen and (min-width: 768px) {
     .categories {
         grid-template-columns: 1fr 1fr;
+    }
+
+    .categories-heading::after,
+    .categories-heading::before {
+        width: 100px;
     }
 }
 

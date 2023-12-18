@@ -1,3 +1,13 @@
-.hero__image {
-    width: 100%;
+.hero {
+    display: none;
+}
+
+@media screen and (min-width: 768px) {
+    .hero {
+        display: block;
+    }
+
+    .hero__image {
+        width: 100%;
+    }
 }
