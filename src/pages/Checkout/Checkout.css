@@ -64,14 +64,6 @@
         justify-content: center;
     }
 
-    .order-details {
-        padding: 0 0 0 24px;
-    }
-
-    .delivery-address {
-        padding-left: 24px;
-    }
-
     .price__checkout {
         margin-left: 18px;
     }
