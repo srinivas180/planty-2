@@ -45,6 +45,7 @@ export function Categories() {
                         <div
                             className="category"
                             onClick={() => handleCategoryClick(index)}
+                            key={category._id}
                         >
                             <img
                                 className="category__image"

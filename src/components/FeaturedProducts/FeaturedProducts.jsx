@@ -52,8 +52,12 @@ export function FeaturedProducts() {
                 <h2 className="featured-products__title">Featured Products</h2>
             </div>
             <div className="featured-products">
-                {featuredProducts.map((featuredProduct) => (
-                    <Link className="link featured-product" to="/products">
+                {featuredProducts.map((featuredProduct, index) => (
+                    <Link
+                        className="link featured-product"
+                        to="/products"
+                        key={index}
+                    >
                         <img
                             className="featured-product__image"
                             src={featuredProduct.img}
