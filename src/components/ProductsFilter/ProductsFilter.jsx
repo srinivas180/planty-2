@@ -84,7 +84,7 @@ export function ProductsFilter({ isFiltersOpen, toggleFilters }) {
                         type="radio"
                         value="priceLowToHigh"
                         name="rating"
-                        onClick={handleSortBy}
+                        onChange={handleSortBy}
                         checked={filters.sortBy === "priceLowToHigh"}
                     />
                     Price - Low to High
@@ -95,7 +95,7 @@ export function ProductsFilter({ isFiltersOpen, toggleFilters }) {
                         type="radio"
                         value="priceHighToLow"
                         name="rating"
-                        onClick={handleSortBy}
+                        onChange={handleSortBy}
                         checked={filters.sortBy === "priceHighToLow"}
                     />
                     Price - High to Low
