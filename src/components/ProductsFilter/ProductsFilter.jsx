@@ -51,7 +51,10 @@ export function ProductsFilter({ isFiltersOpen, toggleFilters }) {
                             className="filters__input"
                             type="checkbox"
                             value={category.categoryName}
-                            checked={filters.categories[index]}
+                            // filters.catergories array is initially empty
+                            // so this input field becomes uncontrolled instead of controlled if it is null/undefined
+                            // to avoid this we pass default value
+                            checked={filters.categories[index] ?? false}
                             onChange={() => handleChangedCategory(index)}
                         />
                         {category.categoryName}
