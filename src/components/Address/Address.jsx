@@ -60,7 +60,7 @@ export function Address({ toggleAddressForm, setAddress, setIsEditAddress }) {
             ) : (
                 <>
                     {addresses.map((address) => (
-                        <div className="address">
+                        <div className="address" key={address._id}>
                             <h4 className="address__subheading">
                                 {address.title}
                             </h4>

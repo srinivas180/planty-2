@@ -22,7 +22,10 @@ export default function Checkout() {
                     {addresses.length === 0
                         ? "No addresses available."
                         : addresses.map((address, index) => (
-                              <div className="checkout__address">
+                              <div
+                                  className="checkout__address"
+                                  key={address._id}
+                              >
                                   <label className="address-options">
                                       <input
                                           type="radio"
@@ -62,7 +65,7 @@ export default function Checkout() {
                                 </p>
                             </div>
                             {cart.map((item) => (
-                                <div className="order__item">
+                                <div className="order__item" key={item._id}>
                                     <p className="order__attribute">
                                         {item.title}
                                     </p>
