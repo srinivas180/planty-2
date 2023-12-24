@@ -10,6 +10,7 @@ export default function SingleProduct() {
     const dispatch = useDispatch();
     const navigate = useNavigate();
     const encodedToken = useSelector((state) => state.auth.encodedToken);
+    const isLoggedIn = useSelector((state) => state.auth.isLoggedIn);
 
     const { productId } = useParams();
     const products = useSelector((state) => state.products.products);
@@ -45,20 +46,24 @@ export default function SingleProduct() {
                 <div className="single-product__buttons">
                     <button
                         className="single-product__button button button--primary"
-                        onClick={
-                            cartHasProduct
-                                ? () => navigate("/cart")
-                                : () => handleAddToCart(product)
+                        onClick={() =>
+                            isLoggedIn
+                                ? cartHasProduct
+                                    ? navigate("/cart")
+                                    : handleAddToCart(product)
+                                : navigate("/login")
                         }
                     >
                         {cartHasProduct ? "Go to cart" : "Add to cart"}
                     </button>
                     <button
                         className="single-product__button button button--secondary"
-                        onClick={
-                            wishlistHasProduct
-                                ? () => handleRemoveFromWishlist(product)
-                                : () => handleAddToWishlist(product)
+                        onClick={() =>
+                            isLoggedIn
+                                ? wishlistHasProduct
+                                    ? handleRemoveFromWishlist(product)
+                                    : handleAddToWishlist(product)
+                                : navigate("/login")
                         }
                     >
                         {wishlistHasProduct ? "Unwishlist" : "Add to wishlist"}
