@@ -1,5 +1,6 @@
 .featured-products-container {
-    margin: 100px 20px;
+    margin: 100px 0;
+    padding: 0 24px;
 }
 
 .featured-products__caption {

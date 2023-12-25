@@ -47,10 +47,23 @@
 
     .single-product__image-wrapper {
         width: 40%;
+        border: none;
+        padding: 0;
     }
 
     .single-product__details {
         width: 0;
         flex-grow: 1;
+    }
+}
+
+@media screen and (min-width: 1440px) {
+    .single-product {
+        width: 1390px;
+    }
+
+    .single-product__image-wrapper {
+        padding: 32px;
+        border: 1px solid #d1cdcd;
     }
 }
