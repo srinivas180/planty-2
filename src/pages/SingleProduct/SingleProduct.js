@@ -72,7 +72,13 @@ export default function SingleProduct() {
             </div>
             <div className="column column--gap-20 single-product__details">
                 <h2 className="m-0">{product.title}</h2>
-                <p className="m-0">(4.5 S) 2,810 Ratings & 296 Reviews</p>
+                <div className="product__ratings-and-reviews-count">
+                    <div className="product__rating">
+                        <span>{product.rating}</span>
+                        <span className="fa fa-star"></span>
+                    </div>
+                    <div>2,810 Ratings & 296 Reviews</div>
+                </div>
                 <p className=" m-0 single-product__price">₹{product.price}</p>
                 <div className="m-0">
                     <span className="cart-item__property">Category: </span>

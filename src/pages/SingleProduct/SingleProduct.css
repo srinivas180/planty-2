@@ -26,6 +26,11 @@
     font-weight: 500;
 }
 
+.product__ratings-and-reviews-count {
+    display: flex;
+    gap: 8px;
+}
+
 @media screen and (min-width: 768px) {
     .single-product__image-wrapper {
         width: 60%;
