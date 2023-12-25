@@ -10,7 +10,11 @@ export function FeaturedProducts({ isSingleProductPage }) {
                     THE MOST TRENDY
                 </span>
             )}
-            <h2 className="featured-products__title">Featured Products</h2>
+            <h2 className="featured-products__title">
+                {!isSingleProductPage
+                    ? "Featured Products"
+                    : "Recommended Products"}
+            </h2>
             <FeaturedProductsList />
         </div>
     );
